@@ -1,0 +1,26 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="b.kezikov" context="all">
+        <addForeignKeyConstraint baseTableName="taxi_order"
+                                 baseColumnNames="id_driver"
+                                 constraintName="FK_driver_licence"
+                                 referencedTableName="taxi_driver"
+                                 referencedColumnNames="id_driver" />
+
+        <addForeignKeyConstraint baseTableName="taxi_order" baseColumnNames="phone_number" constraintName="FK_phone_client_id" referencedTableName="client"
+                                 referencedColumnNames="phone_number" />
+        <addForeignKeyConstraint baseTableName="taxi_order" baseColumnNames="tariff_id" constraintName="FK_tariff_id" referencedTableName="tariff"
+                                 referencedColumnNames="tariff_id"/>
+        <addForeignKeyConstraint baseTableName="taxi_driver" baseColumnNames="car_id" constraintName="FK_car_ID" referencedTableName="car"
+                                 referencedColumnNames="car_id"/>
+
+    </changeSet>
+
+    <changeSet id="add default sequence" author="a.tuvaev" context="all">
+        <createSequence sequenceName="hibernate_sequence" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+</databaseChangeLog>
