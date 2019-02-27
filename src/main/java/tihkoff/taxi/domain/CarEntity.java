@@ -20,13 +20,13 @@ public class CarEntity {
     @Id
     @Column(name = "car_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long carId;
+    private long carId;
 
     @Column(name = "model_info", nullable = false, length = 100)
     private String modelInfo;
 
     @Column(name = "tech_condition", nullable = false)
-    private Integer techCondition;
+    private int techCondition;
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "manufacturer_id")
@@ -38,11 +38,11 @@ public class CarEntity {
     @OneToMany(mappedBy = "carEntity", fetch = FetchType.EAGER)
     private List<TaxiDriverEntity> taxiDrivers;
 
-    public Long getCarId() {
+    public long getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) {this.carId = carId;
+    public void setCarId(long carId) {this.carId = carId;
     }
 
     public String getModelInfo() {
@@ -53,7 +53,7 @@ public class CarEntity {
         this.modelInfo = modelInfo;
     }
 
-    public Integer getTechCondition() {
+    public int getTechCondition() {
         return techCondition;
     }
 
@@ -61,7 +61,7 @@ public class CarEntity {
         this.techCondition = techCondition;
     }
 
-    public Integer getCategory() {
+    public int getCategory() {
         return category;
     }
 

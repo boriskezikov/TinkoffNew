@@ -10,4 +10,7 @@ import java.util.List;
 public interface CarEntityMapper {
     CarEntityDTO carEntityMap(CarEntity carEntity);
     List<CarEntityDTO> conveter(List<CarEntity> carEntities);
+    CarEntity carEntityDTOmap(CarEntityDTO carEntityDTO);
+
+
 }

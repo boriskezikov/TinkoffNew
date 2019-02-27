@@ -10,9 +10,9 @@ public interface CarService {
     List<CarEntityDTO> getAll();
     void DeleteById(Long id);
     void DeleteAll();
-    CarEntity EditCar(CarEntity carEntity);
-    List<CarEntity> getByModel(String model);
-    CarEntity getCarByConditionGreaterThan(int techCondition);
+    CarEntityDTO EditCar(CarEntity carEntity);
+    List<CarEntityDTO>  getCarEntitiesByCategory (int category);
+    //CarEntityDTO getCarByConditionGreaterThan(int techCondition);
     CarEntityDTO getByCarId(long id);
 
 }
