@@ -57,9 +57,10 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public CarEntity getCarByConditionGreaterThan(int techCondition){
-        return this.carRepository.findDistinctByTechConditionIsGreaterThan(techCondition);
-    }
+    public CarEntityDTO getCarByConditionGreaterThan(int techCondition){
+        List<CarEntity> carEntities = carRepository.findAllByTechConditionIsGreaterThan(techCondition);
+        return carEntityMapper.conveter(carEntities);
+
 
     @Override
     public CarEntityDTO getByCarId(long id) throws StackOverflowError

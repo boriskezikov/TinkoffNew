@@ -12,7 +12,7 @@ public interface CarService {
     void DeleteAll();
     CarEntity EditCar(CarEntity carEntity);
     List<CarEntity> getByModel(String model);
-    CarEntity getCarByConditionGreaterThan(int techCondition);
+    CarEntityDTO getCarByConditionGreaterThan(int techCondition);
     CarEntityDTO getByCarId(long id);
 
 }

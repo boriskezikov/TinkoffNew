@@ -7,7 +7,6 @@ import tihkoff.taxi.dto.CarEntityDTO;
 import tihkoff.taxi.services.CarService;
 
 import java.util.List;
-import java.util.concurrent.RecursiveAction;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,9 +14,10 @@ import java.util.concurrent.RecursiveAction;
 public class CarEntityController {
     private final CarService carService;
 
-    @GetMapping("{id}")
+
+    @GetMapping("/car/{id}")
     public CarEntityDTO getCar(@PathVariable("id") long carId){
-        return carService.getByCarId(carId);
+       return carService.getByCarId(carId);
 
     }
 //    @GetMapping
