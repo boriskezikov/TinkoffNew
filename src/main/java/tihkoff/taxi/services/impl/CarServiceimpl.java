@@ -1,30 +1,35 @@
 package tihkoff.taxi.services.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tihkoff.taxi.domain.CarEntity;
+import tihkoff.taxi.dto.CarEntityDTO;
+import tihkoff.taxi.mapper.CarEntityMapper;
 import tihkoff.taxi.repository.CarRepository;
 import tihkoff.taxi.services.CarService;
 
 
 import java.util.List;
 
-
+@RequiredArgsConstructor
 @Service
 public class CarServiceimpl implements CarService {
 
     private final CarRepository carRepository;
+    private final CarEntityMapper carEntityMapper;
 
-    public CarServiceimpl(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
+    //public CarServiceimpl(CarRepository carRepository) {this.carRepository = carRepository; }
     @Override
     public CarEntity addCar(CarEntity carEntity){
         return this.carRepository.saveAndFlush(carEntity);
     }
 
     @Override
-    public List<CarEntity> getAll(){
-        return this.carRepository.findAll();
+    public List<CarEntityDTO> getAll(){
+
+        List<CarEntity> carEntities = carRepository.findAll();
+        return carEntityMapper.conveter(carEntities);
+
     }
 
     @Override
@@ -54,6 +59,13 @@ public class CarServiceimpl implements CarService {
     @Override
     public CarEntity getCarByConditionGreaterThan(int techCondition){
         return this.carRepository.findDistinctByTechConditionIsGreaterThan(techCondition);
+    }
+
+    @Override
+    public CarEntityDTO getByCarId(long id) throws StackOverflowError
+    {
+        //return carRepository.getByCarId(id);
+        return null;
     }
 
 

@@ -10,6 +10,7 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
     List<CarEntity> findAllByModelInfo(String model);
     CarEntity findDistinctByTechConditionIsGreaterThan(int tech);
+    CarEntity getByCarId(long id);
 
 
 }
