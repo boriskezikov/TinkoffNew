@@ -20,6 +20,8 @@ public class CarEntityDTO {
 
     private int category;
 
+    private String modelInfo;
+
     private List<TaxiDriverEntityDTO> taxiDrivers;
 
 }
