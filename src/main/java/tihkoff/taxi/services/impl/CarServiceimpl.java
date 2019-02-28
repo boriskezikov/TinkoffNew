@@ -26,7 +26,6 @@ public class CarServiceimpl implements CarService {
 
     @Override
     public List<CarEntityDTO> getAll() {
-
         List<CarEntity> carEntities = carRepository.findAll();
         return carEntityMapper.conveter(carEntities);
 
