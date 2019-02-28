@@ -10,25 +10,23 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/car")
+@RequestMapping("car")
 public class CarEntityController {
     private final CarService carService;
 
 
-    @GetMapping("/car/{id}")
-    public CarEntityDTO getCar(@PathVariable("id") long carId){
-       return carService.getByCarId(carId);
+    @GetMapping("{car_id}")
+    public CarEntityDTO getCar(@PathVariable("car_id") long car_id)throws NumberFormatException{
+       return carService.getByCarId(car_id);
 
     }
-//    @GetMapping
-//    public List<CarEntityDTO>getByCondition(int condition)throws StackOverflowError {
-//        return getByCondition(condition);
-//    }
+
     @GetMapping
     public List<CarEntityDTO>getAll(){
         return carService.getAll();
 
     }
+
 
 
 

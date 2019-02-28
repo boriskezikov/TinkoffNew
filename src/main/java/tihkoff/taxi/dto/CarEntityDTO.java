@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Getter
@@ -19,6 +20,6 @@ public class CarEntityDTO {
 
     private int category;
 
-    private List<TaxiDriverEntityDTO> taxiDriverEntityDTOS;
+    private List<TaxiDriverEntityDTO> taxiDrivers;
 
 }

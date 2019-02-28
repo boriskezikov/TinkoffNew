@@ -20,12 +20,12 @@ public class CarServiceimpl implements CarService {
 
     //public CarServiceimpl(CarRepository carRepository) {this.carRepository = carRepository; }
     @Override
-    public CarEntity addCar(CarEntity carEntity){
+    public CarEntity addCar(CarEntity carEntity) {
         return this.carRepository.saveAndFlush(carEntity);
     }
 
     @Override
-    public List<CarEntityDTO> getAll(){
+    public List<CarEntityDTO> getAll() {
 
         List<CarEntity> carEntities = carRepository.findAll();
         return carEntityMapper.conveter(carEntities);
@@ -33,40 +33,35 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public void DeleteById(Long id){
-         this.carRepository.deleteById(id);
+    public void DeleteById(Long id) {
+        this.carRepository.deleteById(id);
 
     }
 
     @Override
-    public void DeleteAll(){
+    public void DeleteAll() {
         this.carRepository.deleteAll();
     }
 
     @Override
-    public CarEntity EditCar (CarEntity carEntity){
-        if(this.carRepository.findById(carEntity.getCarId()).isPresent()){
+    public CarEntityDTO EditCar(CarEntity carEntity) {
+        if (this.carRepository.findById(carEntity.getCarId()).isPresent()) {
             this.carRepository.deleteById(carEntity.getCarId());
         }
-        return this.carRepository.saveAndFlush(carEntity);
+        return carEntityMapper.carEntityMap(carRepository.save(carEntity));
     }
 
     @Override
-    public List<CarEntity> getByModel(String model){
-        return this.carRepository.findAllByModelInfo(model);
+    public   List<CarEntityDTO> getCarEntitiesByCategory(int category){
+        return carEntityMapper.conveter(carRepository.getCarEntitiesByCategory(category));
+
     }
 
     @Override
-    public CarEntityDTO getCarByConditionGreaterThan(int techCondition){
-        List<CarEntity> carEntities = carRepository.findAllByTechConditionIsGreaterThan(techCondition);
-        return carEntityMapper.conveter(carEntities);
-
-
-    @Override
-    public CarEntityDTO getByCarId(long id) throws StackOverflowError
+    public CarEntityDTO getByCarId ( long id)
     {
-        //return carRepository.getByCarId(id);
-        return null;
+        return carEntityMapper.carEntityMap(carRepository.getByCarId(id));
+
     }
 
 
