@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +27,8 @@ public class CarEntity {
     @Column(name = "tech_condition", nullable = false)
     private int techCondition;
 
-    @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "manufacturer_id")
-    private Manufacturer manufacturer;
+    private  long manufacturerID;
 
     @Column(nullable = false)
     private Integer category;
@@ -77,11 +75,11 @@ public class CarEntity {
         this.taxiDrivers = taxiDrivers;
     }
 
-    public Manufacturer getManufacturer() {
-        return manufacturer;
+    public long getManufacturer() {
+        return manufacturerID;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setManufacturer(long manufacturerID) {
+        this.manufacturerID = manufacturerID;
     }
 }

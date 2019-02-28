@@ -9,28 +9,28 @@ import java.util.Collection;
 public class ClientEntity {
     @Id
     @Column(name="phone_number", nullable = false)
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "name", nullable = false)
-    private String Name;
+    private String name;
 
     @Column (name= "status", nullable = false)
-    private Boolean Status;
+    private Boolean status;
 
     /**taxi-order connection </>*/
     @OneToMany (mappedBy = "clientEntity", fetch = FetchType.EAGER)
     private Collection<TaxiOrderEntity> taxiOrderEntities;
 
 
-    public String getPhoneNumber(){return PhoneNumber;    }
+    public String getPhoneNumber(){return phoneNumber;    }
 
-    public void setPhoneNumber(String phoneNumber){this.PhoneNumber = phoneNumber;    }
+    public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;    }
 
-    public String getName(){return Name;    }
+    public String getName(){return name;    }
 
-    public void setName(String name) {this.Name = name;    }
+    public void setName(String name) {this.name = name;    }
 
-    public Boolean getStatus() {return Status;  }
+    public Boolean getStatus() {return status;  }
 
-    public void setStatus(Boolean status) {this.Status = status;    }
+    public void setStatus(Boolean status) {this.status = status;    }
 }

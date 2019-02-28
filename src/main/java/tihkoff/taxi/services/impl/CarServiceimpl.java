@@ -18,46 +18,50 @@ public class CarServiceimpl implements CarService {
     private final CarRepository carRepository;
     private final CarEntityMapper carEntityMapper;
 
-    //public CarServiceimpl(CarRepository carRepository) {this.carRepository = carRepository; }
     @Override
-    public CarEntity addCar(CarEntity carEntity) {
-        return this.carRepository.saveAndFlush(carEntity);
+    public void addCar(CarEntityDTO carEntityDTO) {
+
+        carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
     }
 
     @Override
     public List<CarEntityDTO> getAll() {
-        List<CarEntity> carEntities = carRepository.findAll();
-        return carEntityMapper.conveter(carEntities);
-
+        return carEntityMapper.conveter(carRepository.findAll());
     }
 
     @Override
-    public void DeleteById(Long id) {
+    public void deleteById(Long id) {
         this.carRepository.deleteById(id);
 
     }
 
     @Override
-    public void DeleteAll() {
+    public void deleteAll() {
+
         this.carRepository.deleteAll();
     }
 
     @Override
-    public CarEntityDTO EditCar(CarEntity carEntity) {
-        if (this.carRepository.findById(carEntity.getCarId()).isPresent()) {
-            this.carRepository.deleteById(carEntity.getCarId());
+    public CarEntityDTO editCar(CarEntityDTO carEntityDTO, Long carId)
+        {
+            if (carRepository.findById(carId).isPresent()){
+                CarEntity carEntity = carRepository.getByCarId(carId);
+            carEntityDTO.setCarId(carId);
+            return carEntityMapper.
+                    carEntityMap(carRepository.
+                            save(carEntityMapper.
+                                    updateCar(carEntityDTO,carEntity)));
         }
-        return carEntityMapper.carEntityMap(carRepository.save(carEntity));
-    }
-
+            return null;
+        }
     @Override
-    public   List<CarEntityDTO> getCarEntitiesByCategory(int category){
+    public   List<CarEntityDTO> getCarEntitiesByCategory(Integer category){
         return carEntityMapper.conveter(carRepository.getCarEntitiesByCategory(category));
 
     }
 
     @Override
-    public CarEntityDTO getByCarId ( long id)
+    public CarEntityDTO getByCarId ( Long id)
     {
         return carEntityMapper.carEntityMap(carRepository.getByCarId(id));
 
