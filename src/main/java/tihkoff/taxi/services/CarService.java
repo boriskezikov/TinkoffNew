@@ -6,11 +6,11 @@ import tihkoff.taxi.dto.CarEntityDTO;
 import java.util.List;
 
 public interface CarService {
-    CarEntity addCar(CarEntity carEntity);
+    void addCar(CarEntityDTO DTO);
     List<CarEntityDTO> getAll();
     void DeleteById(Long id);
     void DeleteAll();
-    CarEntityDTO EditCar(CarEntity carEntity);
+    CarEntityDTO EditCar(CarEntityDTO carEntityDTO);
     List<CarEntityDTO>  getCarEntitiesByCategory (int category);
     //CarEntityDTO getCarByConditionGreaterThan(int techCondition);
     CarEntityDTO getByCarId(long id);

@@ -5,7 +5,6 @@ package tihkoff.taxi.controller;
 import lombok.RequiredArgsConstructor;
 
 
-import org.dom4j.rule.Mode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +39,10 @@ public class CarEntityController {
         return carService.getAll();
     }
     @PostMapping("{post}")
-    public ResponseEntity<CarEntityDTO> addCar(@PathVariable("post") /*@RequestParam(value = "manufacturer") String manufacturerID,*/
-                                               @RequestParam(value = "techCondition") int techCondition,
+    public CarEntityDTO addCar(@PathVariable("post")
+                                   @RequestParam(value = "techCondition") int techCondition,
                                                @RequestParam(value = "category") int category,
-                                               @RequestParam(value = "manufacturerid") String maId,
+                                               @RequestParam(value = "manufacturerid") long maId,
                                                @RequestParam(value = "carId") long id,
                                                @RequestParam(value = "model") String Model)  throws IOException {
         CarEntityDTO carEntityDTO = new CarEntityDTO();
@@ -52,9 +51,9 @@ public class CarEntityController {
         carEntityDTO.setManufacturerId(maId);
         carEntityDTO.setModelInfo(Model);
         carEntityDTO.setTechCondition(techCondition);
-        carService.addCar(carEntityMapper.carEntityDTOmap(carEntityDTO));
+        carService.addCar(carEntityDTO);
                 /** Add Header response and argument validation**/
-                return new ResponseEntity<>(HttpStatus.CREATED);
+                return carEntityDTO;
     }
 
 

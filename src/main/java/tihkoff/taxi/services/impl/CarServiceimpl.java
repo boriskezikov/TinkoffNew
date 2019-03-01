@@ -20,8 +20,8 @@ public class CarServiceimpl implements CarService {
 
     //public CarServiceimpl(CarRepository carRepository) {this.carRepository = carRepository; }
     @Override
-    public CarEntity addCar(CarEntity carEntity) {
-        return this.carRepository.saveAndFlush(carEntity);
+    public void addCar(CarEntityDTO carEntityDTO) {
+        carRepository.saveAndFlush(carEntityMapper.carEntityDTOmap(carEntityDTO));
     }
 
     @Override
@@ -39,15 +39,16 @@ public class CarServiceimpl implements CarService {
 
     @Override
     public void DeleteAll() {
+
         this.carRepository.deleteAll();
     }
 
     @Override
-    public CarEntityDTO EditCar(CarEntity carEntity) {
-        if (this.carRepository.findById(carEntity.getCarId()).isPresent()) {
-            this.carRepository.deleteById(carEntity.getCarId());
+    public CarEntityDTO EditCar(CarEntityDTO carEntityDTO) {
+        if (this.carRepository.findById(carEntityDTO.getCarId()).isPresent()) {
+            this.carRepository.deleteById(carEntityDTO.getCarId());
         }
-        return carEntityMapper.carEntityMap(carRepository.save(carEntity));
+        return null;//carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
     }
 
     @Override

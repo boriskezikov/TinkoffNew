@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Getter
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class CarEntityDTO {
     private long  carId;
 
-    private String manufacturerId;
+    private long manufacturerId;
 
     private int techCondition;
 
