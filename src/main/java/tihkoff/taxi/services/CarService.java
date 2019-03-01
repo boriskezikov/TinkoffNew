@@ -1,6 +1,5 @@
 package tihkoff.taxi.services;
 
-import tihkoff.taxi.domain.CarEntity;
 import tihkoff.taxi.dto.CarEntityDTO;
 
 import java.util.List;
@@ -10,9 +9,8 @@ public interface CarService {
     List<CarEntityDTO> getAll();
     void DeleteById(Long id);
     void DeleteAll();
-    CarEntityDTO EditCar(CarEntityDTO carEntityDTO);
-    List<CarEntityDTO>  getCarEntitiesByCategory (int category);
-    //CarEntityDTO getCarByConditionGreaterThan(int techCondition);
-    CarEntityDTO getByCarId(long id);
+    CarEntityDTO EditCar(CarEntityDTO carEntityDTO, Long carId);
+    List<CarEntityDTO>  getCarEntitiesByCategory (Integer category);
+    CarEntityDTO getByCarId(Long id);
 
 }

@@ -4,17 +4,16 @@ package tihkoff.taxi.controller;
 
 import lombok.RequiredArgsConstructor;
 
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import tihkoff.taxi.dto.CarEntityDTO;
 import tihkoff.taxi.mapper.CarEntityMapper;
 import tihkoff.taxi.services.CarService;
 
 
-import java.io.IOException;
+import javax.validation.Valid;
+
 import java.util.List;
 
 
@@ -30,37 +29,49 @@ public class CarEntityController {
 
 
     @GetMapping("{car_id}")
-    public CarEntityDTO getCar(@PathVariable("car_id") long car_id)throws NumberFormatException{
+    public CarEntityDTO getCar(@PathVariable("car_id") long car_id)throws NumberFormatException
+    {
        return carService.getByCarId(car_id);
-
     }
+
     @GetMapping
-    private List<CarEntityDTO>getAll(){
+    public List<CarEntityDTO>getAll()
+
+    {
         return carService.getAll();
     }
-    @PostMapping("{post}")
-    public CarEntityDTO addCar(@PathVariable("post")
-                                   @RequestParam(value = "techCondition") int techCondition,
-                                               @RequestParam(value = "category") int category,
-                                               @RequestParam(value = "manufacturerid") long maId,
-                                               @RequestParam(value = "carId") long id,
-                                               @RequestParam(value = "model") String Model)  throws IOException {
-        CarEntityDTO carEntityDTO = new CarEntityDTO();
-        carEntityDTO.setCategory(category);
-        carEntityDTO.setCarId(id);
-        carEntityDTO.setManufacturerId(maId);
-        carEntityDTO.setModelInfo(Model);
-        carEntityDTO.setTechCondition(techCondition);
+
+    @PostMapping("/poster")
+    public void addCar(@RequestBody @Valid CarEntityDTO carEntityDTO) throws java.lang.IllegalStateException
+
+    {
         carService.addCar(carEntityDTO);
-                /** Add Header response and argument validation**/
-                return carEntityDTO;
     }
 
+    @PutMapping("/edit/{id}")
+    public CarEntityDTO editCar(@RequestBody @Valid CarEntityDTO carEntityDTO, @PathVariable("id") long carId)
+    {
+        return carService.EditCar(carEntityDTO, carId);
 
+    }
+    @DeleteMapping("delete/{id}")
+    public void deleteCar(@PathVariable("id") long carId)
+    {
+        carService.DeleteById(carId);
 
-
-
-
-
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

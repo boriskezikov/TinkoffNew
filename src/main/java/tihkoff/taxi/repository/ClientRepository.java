@@ -5,5 +5,9 @@ import org.springframework.stereotype.Repository;
 import tihkoff.taxi.domain.ClientEntity;
 
 @Repository
-public interface ClientRepository extends JpaRepository<ClientEntity, Long> {
+public interface ClientRepository extends JpaRepository<ClientEntity, String> {
+
+    ClientEntity findByPhoneNumber(String phone);
+    void deleteByPhoneNumber(String phone);
+
 }

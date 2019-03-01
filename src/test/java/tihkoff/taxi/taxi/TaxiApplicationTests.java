@@ -44,7 +44,7 @@ public class TaxiApplicationTests {
     public void contextLoads() {
         CarEntity carEntity = new CarEntity();
 
-        carEntity.setManufacturer(Manufacturer.BMW);
+        carEntity.setManufacturer(1);
         carEntity.setModelInfo("modelк14Info1");
         carEntity.setTechCondition(2);
         carEntity.setCategory(0);
@@ -70,7 +70,7 @@ public class TaxiApplicationTests {
 
         ClientEntity clientEntity = new ClientEntity();
         clientEntity.setName("BOriафаыs");
-        clientEntity.setPhoneNumber("7931408196392");
+        clientEntity.setPhoneNumber("798196392");
         clientEntity.setStatus(true);
       clientEntity = clientRepository.save(clientEntity);
 

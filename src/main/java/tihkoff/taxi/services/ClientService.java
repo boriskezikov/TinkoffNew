@@ -1,15 +1,16 @@
 package tihkoff.taxi.services;
 
-import tihkoff.taxi.domain.ClientEntity;
+
+import tihkoff.taxi.dto.ClientEntityDTO;
 
 import java.util.List;
 
 public interface ClientService {
-    ClientEntity addClient(ClientEntity clientEntity);
-    List<ClientEntity> getAll();
-    void Delete(ClientEntity clientEntity);
+    void addClient(ClientEntityDTO clientEntityDTO);
+    List<ClientEntityDTO> getAll();
+    void DeleteByPhone(String phone);
     void DeleteAll();
-    ClientEntity EditCar(ClientEntity clientEntity);
-    List<ClientEntity> getByPhone(String model);
-    boolean changeStatus(ClientEntity clientEntity);
+    ClientEntityDTO EditClient(ClientEntityDTO clientEntityDTO, String phone);
+    ClientEntityDTO getByPhone(String model);
+    boolean changeStatus(ClientEntityDTO clientEntityDTO);
 }

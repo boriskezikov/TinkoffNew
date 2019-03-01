@@ -15,4 +15,5 @@ public interface CarRepository extends JpaRepository<CarEntity, Long> {
 
 
 
+
 }

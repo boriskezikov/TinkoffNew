@@ -18,17 +18,15 @@ public class CarServiceimpl implements CarService {
     private final CarRepository carRepository;
     private final CarEntityMapper carEntityMapper;
 
-    //public CarServiceimpl(CarRepository carRepository) {this.carRepository = carRepository; }
     @Override
     public void addCar(CarEntityDTO carEntityDTO) {
-        carRepository.saveAndFlush(carEntityMapper.carEntityDTOmap(carEntityDTO));
+
+        carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
     }
 
     @Override
     public List<CarEntityDTO> getAll() {
-        List<CarEntity> carEntities = carRepository.findAll();
-        return carEntityMapper.conveter(carEntities);
-
+        return carEntityMapper.conveter(carRepository.findAll());
     }
 
     @Override
@@ -44,13 +42,18 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public CarEntityDTO EditCar(CarEntityDTO carEntityDTO) {
-        if (this.carRepository.findById(carEntityDTO.getCarId()).isPresent()) {
-            this.carRepository.deleteById(carEntityDTO.getCarId());
+    public CarEntityDTO EditCar(CarEntityDTO carEntityDTO, long carId)
+        {
+            if (carRepository.findById(carId).isPresent()){
+                CarEntity carEntity = carRepository.getByCarId(carId);
+            carEntityDTO.setCarId(carId);
+            return carEntityMapper.
+                    carEntityMap(carRepository.
+                            save(carEntityMapper.
+                                    updateCar(carEntityDTO,carEntity)));
         }
-        return null;//carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
-    }
-
+            return null;
+        }
     @Override
     public   List<CarEntityDTO> getCarEntitiesByCategory(int category){
         return carEntityMapper.conveter(carRepository.getCarEntitiesByCategory(category));
