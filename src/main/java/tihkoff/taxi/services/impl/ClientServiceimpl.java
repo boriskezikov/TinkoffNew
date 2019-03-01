@@ -29,17 +29,17 @@ public class ClientServiceimpl implements ClientService {
     }
 
     @Override
-    public void DeleteByPhone(String phone) {
+    public void deleteByPhone(String phone) {
         clientRepository.deleteByPhoneNumber(phone);
     }
 
     @Override
-    public void DeleteAll() {
+    public void deleteAll() {
         clientRepository.deleteAll();
     }
 
     @Override
-    public ClientEntityDTO EditClient(ClientEntityDTO clientEntityDTO, String phone) {
+    public ClientEntityDTO editClient(ClientEntityDTO clientEntityDTO, String phone) {
       ClientEntity clientEntity = clientRepository.findByPhoneNumber(phone);
       clientEntityDTO.setPhoneNumber(phone);
       return clientEntityMapper.

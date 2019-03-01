@@ -30,19 +30,19 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public void DeleteById(Long id) {
+    public void deleteById(Long id) {
         this.carRepository.deleteById(id);
 
     }
 
     @Override
-    public void DeleteAll() {
+    public void deleteAll() {
 
         this.carRepository.deleteAll();
     }
 
     @Override
-    public CarEntityDTO EditCar(CarEntityDTO carEntityDTO, long carId)
+    public CarEntityDTO editCar(CarEntityDTO carEntityDTO, Long carId)
         {
             if (carRepository.findById(carId).isPresent()){
                 CarEntity carEntity = carRepository.getByCarId(carId);
@@ -55,13 +55,13 @@ public class CarServiceimpl implements CarService {
             return null;
         }
     @Override
-    public   List<CarEntityDTO> getCarEntitiesByCategory(int category){
+    public   List<CarEntityDTO> getCarEntitiesByCategory(Integer category){
         return carEntityMapper.conveter(carRepository.getCarEntitiesByCategory(category));
 
     }
 
     @Override
-    public CarEntityDTO getByCarId ( long id)
+    public CarEntityDTO getByCarId ( Long id)
     {
         return carEntityMapper.carEntityMap(carRepository.getByCarId(id));
 

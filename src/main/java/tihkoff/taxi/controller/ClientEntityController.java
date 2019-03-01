@@ -41,14 +41,14 @@ public class ClientEntityController {
     @PutMapping("/edit/{phone}")
     public ClientEntityDTO editClient(@RequestBody @Valid ClientEntityDTO clientEntityDTO, @PathVariable("phone") String phoneNumber)
     {
-        return clientService.EditClient(clientEntityDTO, phoneNumber);
+        return clientService.editClient(clientEntityDTO, phoneNumber);
 
     }
 
     @DeleteMapping("delete/{phone}")
     public void deleteClient(@PathVariable("phone") String phone)
     {
-        clientService.DeleteByPhone(phone);
+        clientService.deleteByPhone(phone);
 
     }
 

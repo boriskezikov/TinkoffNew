@@ -51,13 +51,13 @@ public class CarEntityController {
     @PutMapping("/edit/{id}")
     public CarEntityDTO editCar(@RequestBody @Valid CarEntityDTO carEntityDTO, @PathVariable("id") long carId)
     {
-        return carService.EditCar(carEntityDTO, carId);
+        return carService.editCar(carEntityDTO, carId);
 
     }
     @DeleteMapping("delete/{id}")
     public void deleteCar(@PathVariable("id") long carId)
     {
-        carService.DeleteById(carId);
+        carService.deleteById(carId);
 
     }
 
