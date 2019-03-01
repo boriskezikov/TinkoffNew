@@ -16,11 +16,11 @@ public class TaxiOrderDTO {
 
     private String clientLocation;
 
-    private int status;
+    private Integer status;
 
     private TariffEntityDTO tariffEntityDTO;
 
-    private long orderId;
+    private Long orderId;
 
     private RateEntityDTO rateEntityDTO;
 

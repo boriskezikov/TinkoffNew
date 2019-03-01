@@ -10,9 +10,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class TariffEntityDTO {
-    private int price;
-    private int tariffId;
+    private Integer price;
+
+    private Integer tariffId;
+
     private String tariffInfo;
+
     private List<TaxiOrderDTO> taxiOrderDTOS;
 
 

@@ -12,13 +12,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class CarEntityDTO {
-    private long  carId;
+    private Long  carId;
 
-    private long manufacturerId;
+    private Long manufacturerId;
 
-    private int techCondition;
+    private Integer techCondition;
 
-    private int category;
+    private Integer category;
 
     private String modelInfo;
 
