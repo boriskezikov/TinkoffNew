@@ -14,7 +14,7 @@ public class ClientEntityDTO {
 
     private String name;
 
-    private boolean status;
+    private Boolean status;
 
     private List<TaxiOrderDTO> taxiOrderDTOS;
 

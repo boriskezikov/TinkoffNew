@@ -24,8 +24,6 @@ import java.util.List;
 @RequestMapping("/CAR_ENTITY")
 public class CarEntityController {
     private final CarService carService;
-    private final CarEntityMapper carEntityMapper;
-
 
 
     @GetMapping("{car_id}")

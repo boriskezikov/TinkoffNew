@@ -1,4 +1,4 @@
-package tihkoff.taxi.taxi;
+/**package tihkoff.taxi.taxi;
 
 import org.assertj.core.api.Assertions;
 import org.junit.After;
@@ -89,3 +89,4 @@ public class TaxiApplicationTests {
 
     }
 }
+*/

@@ -11,7 +11,6 @@ public interface TaxiDriverService {
     void addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO);
     TaxiDriverEntityDTO getByLicence(String licenceNum);
     TaxiDriverEntityDTO getByPassport(String passportNum);
-    TaxiDriverEntityDTO getByCarId(Long carID);
     void deleteAll();
     void deleteById(Long id);
     void deleteByPassport(String passport);

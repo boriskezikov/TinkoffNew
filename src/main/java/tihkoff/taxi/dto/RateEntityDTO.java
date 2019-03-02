@@ -3,7 +3,7 @@ package tihkoff.taxi.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tihkoff.taxi.domain.TaxiOrderEntity;
+
 
 import java.util.List;
 
@@ -11,8 +11,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class RateEntityDTO {
-    private long orderId;
+    private Long orderId;
+
     private String review;
-    private List<TaxiDriverEntityDTO> taxiDriverEntityDTOS;
+
+    private List<TaxiOrderDTO> taxiOrderDTOS;
 
 }

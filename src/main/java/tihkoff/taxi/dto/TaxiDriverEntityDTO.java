@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class TaxiDriverEntityDTO {
-    private int driverID;
+    private Long driverID;
 
     private String licenceNumber;
 

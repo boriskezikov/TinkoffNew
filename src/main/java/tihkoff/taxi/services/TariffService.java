@@ -1,8 +1,8 @@
 package tihkoff.taxi.services;
 
-import tihkoff.taxi.domain.TariffEntity;
+
 import tihkoff.taxi.dto.TariffEntityDTO;
-import tihkoff.taxi.dto.TaxiDriverEntityDTO;
+
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface TariffService {
     List<TariffEntityDTO>getByPriceLess(Integer price);
     List<TariffEntityDTO>getByPriceGreater(Integer price);
     void addTariff(TariffEntityDTO tariffEntityDTO);
-    TariffEntityDTO editTariff (TaxiDriverEntityDTO taxiDriverEntityDTO, Integer tariffID);
+    TariffEntityDTO editTariff (TariffEntityDTO tariffEntityDTO, Integer tariffID);
 
 
 }
