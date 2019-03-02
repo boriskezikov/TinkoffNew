@@ -12,7 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 public class RateEntityDTO {
     private Long orderId;
+
     private String review;
-    private List<TaxiDriverEntityDTO> taxiDriverEntityDTOS;
+
+    private List<TaxiOrderDTO> taxiOrderDTOS;
 
 }

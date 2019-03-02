@@ -12,5 +12,5 @@ public interface TariffEntityMapper {
     TariffEntityDTO tariffEntityMap(TariffEntity tariffEntities);
     List<TariffEntityDTO> conveter(List<TariffEntity> tariffEntities);
     TariffEntity tariffEntityDTOmap(TariffEntityDTO tariffEntityDTO);
-    TariffEntity updateaTariff(TariffEntityDTO tariffEntityDTO, @MappingTarget TariffEntity tariffEntity);
+    TariffEntity updateTariff(TariffEntityDTO tariffEntityDTO, @MappingTarget TariffEntity tariffEntity);
 }

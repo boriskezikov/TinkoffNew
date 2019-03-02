@@ -2,15 +2,15 @@ package tihkoff.taxi.domain;
 
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "tariff", schema = "public", catalog = "tinkofftaxi")
+@Table(name = "tariff")
 public class TariffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int tariff_id;
+    @Column(name = "tariff_id")
+    private int tariffId;
 
     @Column(name = "price")
     private int price;
@@ -23,13 +23,13 @@ public class TariffEntity {
 
     public int getPrice() { return price;    }
 
-    public int getTariff_id() { return tariff_id;  }
+    public int getTariffId() { return tariffId;  }
 
     public String getTariffInfo() {  return tariffInfo;   }
 
     public void setPrice(int price) {     this.price = price;  }
 
-    public void setTariff_id(int tariff_id) {   this.tariff_id = tariff_id;  }
+    public void setTariffId(int tariffId) {   this.tariffId = tariffId;  }
 
     public void setTariffInfo(String tariffInfo) {   this.tariffInfo = tariffInfo;    }
 }

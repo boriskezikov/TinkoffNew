@@ -11,7 +11,7 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
     List<CarEntity> getCarEntitiesByCategory(int category);
     List<CarEntity> findAllByTechConditionIsGreaterThan(int tech);
-    CarEntity getByCarId(long id);
+    
 
 
 

@@ -1,11 +1,11 @@
 
  CREATE TABLE  TAXI_ORDER(
- id_driver int NOT NULL,
+ id_driver int,
  phone_number varchar(11) NOT NULL,
  client_location varchar(50) NOT NULL ,
  distination varchar(50) NOT NULL,
  status int not null ,
- tariff_id int not null ,
+ tariff_id int ,
  order_id bigint not null primary key
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE TAXI_DRIVER(
   license_number varchar(12) not null unique ,
   name varchar(50) not null ,
   passport varchar(12)not null unique ,
-  car_id bigint not null unique
+  car_id bigint unique
 );
 
 CREATE TABLE CAR(

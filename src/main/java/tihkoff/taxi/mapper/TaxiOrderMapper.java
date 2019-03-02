@@ -12,5 +12,5 @@ public interface TaxiOrderMapper {
     TaxiOrderDTO taxiOrderEntityMap (TaxiOrderEntity taxiOrderEntity);
     List<TaxiOrderDTO> conveter(List<TaxiOrderEntity> clientEntities);
     TaxiOrderEntity taxiOrderEntityDTOmap(TaxiOrderDTO clientEntityDTO);
-    TaxiOrderEntity updateClient(TaxiOrderDTO clientEntityDTO, @MappingTarget TaxiOrderEntity taxiOrderEntity);
+    TaxiOrderEntity updateOrder(TaxiOrderDTO taxiOrderDTO, @MappingTarget TaxiOrderEntity taxiOrderEntity);
 }
