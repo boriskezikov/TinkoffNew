@@ -38,7 +38,7 @@ public class TaxiOrderController {
     }
 
     @PostMapping
-    public void addDriver(@RequestBody @Valid TaxiOrderDTO taxiOrderDTO){
+    public void addOrder(@RequestBody @Valid TaxiOrderDTO taxiOrderDTO){
         taxiOrderService.createOrder(taxiOrderDTO);
     }
 }

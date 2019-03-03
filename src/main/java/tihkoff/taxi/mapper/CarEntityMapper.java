@@ -1,6 +1,7 @@
 package tihkoff.taxi.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import tihkoff.taxi.domain.CarEntity;
 import tihkoff.taxi.dto.CarEntityDTO;

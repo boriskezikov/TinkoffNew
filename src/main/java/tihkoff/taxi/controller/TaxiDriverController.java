@@ -2,7 +2,7 @@ package tihkoff.taxi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tihkoff.taxi.domain.TaxiDriverEntity;
+
 import tihkoff.taxi.dto.TaxiDriverEntityDTO;
 import tihkoff.taxi.services.TaxiDriverService;
 

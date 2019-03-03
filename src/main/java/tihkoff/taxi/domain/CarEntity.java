@@ -28,7 +28,7 @@ public class CarEntity {
     private int techCondition;
 
     @Column(name = "manufacturer_id")
-    private  long manufacturerID;
+    private long manufacturerID;
 
     @Column(nullable = false)
     private Integer category;

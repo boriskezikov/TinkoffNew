@@ -1,0 +1,14 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="2" author="b.kezikov" context="all">
+        <addColumn tableName="taxi_driver">
+            <column name="status" type="integer" >
+                <constraints checkConstraint="CHECK (status = 0 or status = 1 or status = 2"/>
+            </column>
+        </addColumn>
+        <addNotNullConstraint tableName="taxi_driver" columnName="status" defaultNullValue="0"/>
+    </changeSet>
+</databaseChangeLog>

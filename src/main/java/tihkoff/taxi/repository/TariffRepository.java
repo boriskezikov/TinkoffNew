@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TariffRepository extends JpaRepository<TariffEntity, Integer> {
-
-
     void deleteByTariffId(Integer tariffID);
     void deleteAll();
     List<TariffEntity> getByPriceLessThan(Integer price);

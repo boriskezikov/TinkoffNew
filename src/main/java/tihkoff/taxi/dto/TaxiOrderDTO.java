@@ -10,7 +10,7 @@ import tihkoff.taxi.domain.TaxiDriverEntity;
 @NoArgsConstructor
 public class TaxiOrderDTO {
 
-    private TaxiDriverEntity taxiDriverEntityDTO;
+    private TaxiDriverEntityDTO taxiDriverEntityDTO;
 
     private ClientEntityDTO clientEntityDTO;
 
