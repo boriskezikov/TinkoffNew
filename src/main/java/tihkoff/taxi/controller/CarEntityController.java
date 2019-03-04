@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 import tihkoff.taxi.dto.CarEntityDTO;
-import tihkoff.taxi.mapper.CarEntityMapper;
 import tihkoff.taxi.services.CarService;
 
 

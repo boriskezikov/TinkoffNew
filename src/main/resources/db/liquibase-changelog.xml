@@ -9,6 +9,7 @@
 
 <include file="db/changelog/create_db.xml"/>
 <include file="db/changelog/changeset_connection - 1.1.0.xml"/>
+    <include file="db/changelog/changeset_AddDBField - 1.2.0.xml"/>
 
 
 

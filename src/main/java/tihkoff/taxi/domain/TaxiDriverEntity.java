@@ -1,7 +1,6 @@
 package tihkoff.taxi.domain;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -13,7 +12,10 @@ public class TaxiDriverEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idDriver;
 
-    @Column(name = "license_number", nullable = false, length = 12)
+    @Column
+    private Integer status;
+
+    @Column(name = "license_number", length = 12)
     private String licenseNumber;
 
     @Column(nullable = false, length = 50)
@@ -35,6 +37,14 @@ public class TaxiDriverEntity {
 
     public void setTaxiOrderEntities(List<TaxiOrderEntity> taxiOrderEntities) {
         this.taxiOrderEntities = taxiOrderEntities;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public long getIdDriver() {

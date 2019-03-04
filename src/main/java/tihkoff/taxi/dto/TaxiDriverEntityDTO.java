@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,12 +13,16 @@ import java.util.List;
 public class TaxiDriverEntityDTO {
     private Long driverID;
 
-    private String licenceNumber;
+    private String licenseNumber;
 
     private String passport;
 
+    private Integer status;
+
+    private String name;
+
     private CarEntityDTO carEntityDTO;
 
-    private List<TaxiOrderDTO> taxiOrderDTO;
+    private List<TaxiOrderDTO> taxiOrdersDTO = new ArrayList<>();
 
 }
