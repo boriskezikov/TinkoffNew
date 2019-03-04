@@ -17,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/API_CALL")
+@RequestMapping("/api-call")
 public class API {
     private final CarEntityController carEntityController;
     private final TariffEntityController tariffEntityController;
@@ -26,24 +26,24 @@ public class API {
     private final TaxiDriverController taxiDriverController;
     private final TaxiOrderController taxiOrderController;
 
-    @PostMapping("post")
+    @PostMapping("/order/start")
     public TaxiOrderDTO startSetOrder(@RequestBody PrimaryData primaryData) {
         TaxiOrderDTO taxiOrderDTO = new TaxiOrderDTO();
         ClientEntityDTO clientEntityDTO = new ClientEntityDTO();
         clientEntityDTO.setPhoneNumber(primaryData.getPhoneNumber());
         clientEntityDTO.setName(primaryData.getName());
         clientEntityDTO.setStatus(primaryData.getStatus());
-        taxiOrderDTO.setClientEntityDTO(clientEntityDTO);
+        taxiOrderDTO.setClientEntity(clientEntityDTO);
         taxiOrderDTO = searchDriver(taxiOrderDTO);
         taxiOrderDTO = setUpTariff(taxiOrderDTO);
-        if(taxiOrderDTO.getTaxiDriverEntityDTO() != null){
+        if(taxiOrderDTO.getTaxiDriverEntity() != null){
             taxiOrderDTO = changeOrderStatus(taxiOrderDTO,1);
 
 
         }
-        return taxiOrderDTO;
-        //taxiOrderController.addOrder(taxiOrderDTO);
 
+        taxiOrderController.addOrder(taxiOrderDTO);
+        return taxiOrderDTO;
     }
 
 
@@ -51,7 +51,7 @@ public class API {
             List<TaxiDriverEntityDTO> drivers= taxiDriverController.getAll();
             for (int i = 0; i< drivers.size(); ++i){
                 if(drivers.get(i).getStatus() == 0){
-                   taxiOrderDTO.setTaxiDriverEntityDTO(drivers.get(i));
+                   taxiOrderDTO.setTaxiDriverEntity(drivers.get(i));
                    break;
                 }
             }
@@ -63,7 +63,7 @@ public class API {
         List<TariffEntityDTO> tariff = tariffEntityController.getAll();
             for (int i = 0; i < tariff.size(); ++i)
                   {
-                      taxiOrderDTO.setTariffEntityDTO(tariff.get(i));
+                      taxiOrderDTO.setTariffEntity(tariff.get(i));
                       break;
             }
             return taxiOrderDTO;

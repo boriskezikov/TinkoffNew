@@ -1,4 +1,6 @@
 package tihkoff.taxi.domain;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.criterion.Order;
 import org.hibernate.internal.CriteriaImpl;
 
@@ -7,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
+@Getter
+@Setter
 @Table(name = "rate", schema = "public", catalog="tinkofftaxi")
 public class RateEntity {
 
@@ -25,7 +29,7 @@ public class RateEntity {
     private TaxiOrderEntity taxiOrderEntity;
 
 
-    public Long getOrderId(){
+   /* public Long getOrderId(){
         return orderId;
     }
     public String getReview(){
@@ -44,5 +48,5 @@ public class RateEntity {
 
     public TaxiOrderEntity getTaxiOrderEntity() {
         return taxiOrderEntity;
-    }
+    }*/
 }

@@ -16,7 +16,7 @@ public class TariffEntityDTO {
 
     private String tariffInfo;
 
-    private List<TaxiOrderDTO> taxiOrderDTOS;
+    private List<TaxiOrderDTO> taxiOrders;
 
 
 }

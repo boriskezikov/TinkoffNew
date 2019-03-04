@@ -12,12 +12,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/RATE")
+@RequestMapping("/rate-entity")
 public class RateEntityController {
 
     private final RateService rateService;
 
-    @GetMapping("{id}")
+    @GetMapping("/get/{id}")
     public RateEntityDTO getRate(@PathVariable("id") Long rateID)throws NumberFormatException
     {
         return rateService.getRateById(rateID);

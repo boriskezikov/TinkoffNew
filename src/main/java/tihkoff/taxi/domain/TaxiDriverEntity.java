@@ -1,16 +1,21 @@
 package tihkoff.taxi.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "taxi_driver")
 public class TaxiDriverEntity {
 
     @Id
     @Column(name = "id_driver")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idDriver;
+    private Long driverID;
 
     @Column
     private Integer status;
@@ -29,14 +34,14 @@ public class TaxiDriverEntity {
     private CarEntity carEntity;
 
     @OneToMany(mappedBy = "taxiDriverEntity")
-    private List<TaxiOrderEntity> taxiOrderEntities;
+    private List<TaxiOrderEntity> taxiOrders;
 
-    public List<TaxiOrderEntity> getTaxiOrderEntities() {
-        return taxiOrderEntities;
+   /* public List<TaxiOrderEntity> getTaxiOrderEntities() {
+        return taxiOrders;
     }
 
     public void setTaxiOrderEntities(List<TaxiOrderEntity> taxiOrderEntities) {
-        this.taxiOrderEntities = taxiOrderEntities;
+        this.taxiOrders = taxiOrderEntities;
     }
 
     public Integer getStatus() {
@@ -48,11 +53,11 @@ public class TaxiDriverEntity {
     }
 
     public long getIdDriver() {
-        return idDriver;
+        return driverID;
     }
 
     public void setIdDriver(long idDriver) {
-        this.idDriver = idDriver;
+        this.driverID = idDriver;
     }
 
     public String getLicenseNumber() {
@@ -85,5 +90,5 @@ public class TaxiDriverEntity {
 
     public void setCarEntity(CarEntity carEntity) {
         this.carEntity = carEntity;
-    }
+    }*/
 }

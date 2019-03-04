@@ -1,10 +1,16 @@
 package tihkoff.taxi.domain;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "client", schema = "public", catalog = "tinkofftaxi")
 public class ClientEntity {
     @Id
@@ -19,10 +25,10 @@ public class ClientEntity {
 
     /**taxi-order connection </>*/
     @OneToMany (mappedBy = "clientEntity", fetch = FetchType.EAGER)
-    private Collection<TaxiOrderEntity> taxiOrderEntities;
+    private List<TaxiOrderEntity> taxiOrders;
 
 
-    public String getPhoneNumber(){return phoneNumber;    }
+    /*public String getPhoneNumber(){return phoneNumber;    }
 
     public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;    }
 
@@ -32,5 +38,5 @@ public class ClientEntity {
 
     public Boolean getStatus() {return status;  }
 
-    public void setStatus(Boolean status) {this.status = status;    }
+    public void setStatus(Boolean status) {this.status = status;    }*/
 }

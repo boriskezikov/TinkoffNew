@@ -10,19 +10,21 @@ import tihkoff.taxi.domain.TaxiDriverEntity;
 @NoArgsConstructor
 public class TaxiOrderDTO {
 
-    private TaxiDriverEntityDTO taxiDriverEntityDTO;
+    private TaxiDriverEntityDTO taxiDriverEntity;
 
-    private ClientEntityDTO clientEntityDTO;
+    private ClientEntityDTO clientEntity;
 
     private String clientLocation;
 
+    private String destination;
+
     private Integer status;
 
-    private TariffEntityDTO tariffEntityDTO;
+    private TariffEntityDTO tariffEntity;
 
     private Long orderId;
 
-    private RateEntityDTO rateEntityDTO;
+    private RateEntityDTO rateEntity;
 
 
 }

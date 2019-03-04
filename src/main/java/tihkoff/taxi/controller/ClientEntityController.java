@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/CLIENT_ENTITY")
+@RequestMapping("/client-entity")
 public class ClientEntityController {
     private final ClientService clientService;
 
 
-    @GetMapping("{client_id}")
+    @GetMapping("/get/{client_id}")
     public ClientEntityDTO getClient(@PathVariable("client_id") String phoneNumber)throws NumberFormatException
     {
         return clientService.getByPhone(phoneNumber);

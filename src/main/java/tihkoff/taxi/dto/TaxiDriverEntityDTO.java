@@ -21,8 +21,8 @@ public class TaxiDriverEntityDTO {
 
     private String name;
 
-    private CarEntityDTO carEntityDTO;
+    private CarEntityDTO carEntity;
 
-    private List<TaxiOrderDTO> taxiOrdersDTO = new ArrayList<>();
+    private List<TaxiOrderDTO> taxiOrders = new ArrayList<>();
 
 }
