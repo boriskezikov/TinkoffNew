@@ -16,6 +16,6 @@ public class ClientEntityDTO {
 
     private Boolean status;
 
-    private List<TaxiOrderDTO> taxiOrderDTOS;
+    private List<TaxiOrderDTO> taxiOrders;
 
 }

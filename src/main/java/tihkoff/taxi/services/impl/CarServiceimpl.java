@@ -22,10 +22,7 @@ public class CarServiceimpl implements CarService {
     @Override
     public CarEntityDTO getByCarId ( Long id)
     {
-        return carRepository
-                .findById(id)
-                .map(carEntityMapper::carEntityMap)
-                .orElseThrow(EntityNotFoundException::new);
+        return carRepository.findById(id).map(carEntityMapper::carEntityMap).orElseThrow(EntityNotFoundException::new);
 
     }
 

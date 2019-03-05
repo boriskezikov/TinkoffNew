@@ -1,5 +1,7 @@
 package tihkoff.taxi.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ManyToAny;
 import org.springframework.data.annotation.PersistenceConstructor;
 
@@ -7,6 +9,8 @@ import javax.persistence.*;
 import javax.websocket.OnError;
 
 @Entity
+@Getter
+@Setter
 @Table(name  = "taxi_order" , schema = "public", catalog = "tinkofftaxi")
 public class TaxiOrderEntity {
 
@@ -19,7 +23,8 @@ public class TaxiOrderEntity {
     private String clientLocation;
 
     @Column(name="distination")
-    private String distination;
+
+    private String destination;
 
     @Column(name="status")
     private int status;
@@ -42,7 +47,7 @@ public class TaxiOrderEntity {
     @OneToOne(mappedBy = "taxiOrderEntity")
     private RateEntity rateEntity;
 
-    public TaxiDriverEntity getTaxiDriverEntity() {
+  /*  public TaxiDriverEntity getTaxiDriverEntity() {
         return taxiDriverEntity;
     }
 
@@ -60,19 +65,21 @@ public class TaxiOrderEntity {
 
     public Long getOrderId() {  return orderId;    }
 
-    public String getDistination() { return distination;    }
+    public String getDistination() { return destination;    }
 
     public void setClientLocation(String clientLocation) { this.clientLocation = clientLocation;    }
 
-    public void setDistination(String distination) { this.distination = distination;    }
+    public void setDistination(String distination) { this.destination = distination;    }
 
     public RateEntity getRateEntity() {
         return rateEntity;
     }
 
+
     public void setRateEntity(RateEntity rateEntity) {
         this.rateEntity = rateEntity;
     }
+
     public void setStatus(int status) { this.status = status;    }
 
 
@@ -83,6 +90,6 @@ public class TaxiOrderEntity {
 
     public void setClientEntity(ClientEntity clientEntity) {
         this.clientEntity = clientEntity;
-    }
+    }*/
 }
 

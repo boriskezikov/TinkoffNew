@@ -15,6 +15,6 @@ public class RateEntityDTO {
 
     private String review;
 
-    private List<TaxiOrderDTO> taxiOrderDTOS;
+    private TaxiOrderDTO taxiOrder;
 
 }

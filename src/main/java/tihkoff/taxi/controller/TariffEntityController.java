@@ -12,11 +12,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/TARIFF")
+@RequestMapping("/tariff-entity")
 public class TariffEntityController {
         private final TariffService tariffService;
 
-        @GetMapping("{id}")
+        @GetMapping("/get/{id}")
         public TariffEntityDTO getTariff(@PathVariable("id") Integer tariffID)throws NumberFormatException
         {
             return tariffService.getById(tariffID);

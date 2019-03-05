@@ -17,14 +17,19 @@ public class TaxiApplicationTests {
 
     @Autowired
     private CarRepository carRepository;
+
     @Autowired
-   private TaxiDriverEntityRepository taxiDriverRepository;
+    private TaxiDriverEntityRepository taxiDriverRepository;
+
     @Autowired
     private ClientRepository  clientRepository;
+
     @Autowired
-   private TariffRepository tariffRepository;
+    private TariffRepository tariffRepository;
+
     @Autowired
     private TaxiOrderRepository taxiOrderRepository;
+
     @Autowired
     private RateRepository rateRepository;
 
@@ -44,25 +49,26 @@ public class TaxiApplicationTests {
     public void contextLoads() {
         CarEntity carEntity = new CarEntity();
 
-        carEntity.setManufacturer(1);
+        carEntity.setManufacturerId((long) 13);
         carEntity.setModelInfo("modelк14Info1");
         carEntity.setTechCondition(2);
         carEntity.setCategory(0);
         carEntity = carRepository.save(carEntity);
-        //Assertions.assertThat(carRepository.findAll()).hasSize(1);
+        Assertions.assertThat(carRepository.findAll()).hasSize(1);
 
         TaxiDriverEntity taxiDriverEntity = new TaxiDriverEntity();
         taxiDriverEntity.setCarEntity(carEntity);
         taxiDriverEntity.setLicenseNumber("3324411111");
         taxiDriverEntity.setPassport("3114424213");
         taxiDriverEntity.setName("naqarакуfme");
+        taxiDriverEntity.setStatus(0);
         taxiDriverEntity = taxiDriverRepository.save(taxiDriverEntity);
-        //Assertions.assertThat(taxiDriverRepository.findById(taxiDriverEntity.getIdDriver())).isNotEmpty();
+        Assertions.assertThat(taxiDriverRepository.findById(taxiDriverEntity.getDriverID())).isNotEmpty();
 
-       TariffEntity tariffEntity = new TariffEntity();
+        TariffEntity tariffEntity = new TariffEntity();
         tariffEntity.setPrice(156);
         tariffEntity.setTariffInfo("FADFйеуKS");
-       tariffEntity = tariffRepository.save(tariffEntity);
+        tariffEntity = tariffRepository.save(tariffEntity);
 
         RateEntity rateEntity = new RateEntity();
         rateEntity.setReview(";kdafkйецу;lfdak;l");
@@ -72,21 +78,21 @@ public class TaxiApplicationTests {
         clientEntity.setName("BOriафаыs");
         clientEntity.setPhoneNumber("798196392");
         clientEntity.setStatus(true);
-      clientEntity = clientRepository.save(clientEntity);
+        clientEntity = clientRepository.save(clientEntity);
 
         TaxiOrderEntity taxiOrderEntity = new TaxiOrderEntity();
         taxiOrderEntity.setClientLocation("Moфываscow");
-        taxiOrderEntity.setDistination("Kiфыаev");
+        taxiOrderEntity.setDestination("Kiфыаev");
         taxiOrderEntity.setStatus(1);
         taxiOrderEntity.setTaxiDriverEntity(taxiDriverEntity);
-       taxiOrderEntity.setClientEntity(clientEntity);
+        taxiOrderEntity.setClientEntity(clientEntity);
         taxiOrderEntity.setTariffEntity(tariffEntity);
         taxiOrderEntity.setRateEntity(rateEntity);
-       taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
+        taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
 
 
 
 
     }
-}
-*/
+}*/
+

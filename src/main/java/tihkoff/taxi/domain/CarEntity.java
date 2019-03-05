@@ -1,5 +1,7 @@
 package tihkoff.taxi.domain;
 
+
+
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
@@ -28,7 +30,7 @@ public class CarEntity {
     private int techCondition;
 
     @Column(name = "manufacturer_id")
-    private long manufacturerID;
+    private Long manufacturerId;
 
     @Column(nullable = false)
     private Integer category;
@@ -75,11 +77,11 @@ public class CarEntity {
         this.taxiDrivers = taxiDrivers;
     }
 
-    public long getManufacturer() {
-        return manufacturerID;
+    public Long getManufacturerId() {
+        return manufacturerId;
     }
 
-    public void setManufacturer(long manufacturerID) {
-        this.manufacturerID = manufacturerID;
+    public void setManufacturerId(Long manufacturerId) {
+        this.manufacturerId = manufacturerId;
     }
 }

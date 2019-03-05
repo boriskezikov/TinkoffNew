@@ -20,37 +20,37 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/CAR_ENTITY")
+@RequestMapping("/car-entity")
 public class CarEntityController {
     private final CarService carService;
 
-
-    @GetMapping("{car_id}")
-    public CarEntityDTO getCar(@PathVariable("car_id") long car_id)throws NumberFormatException
+    @GetMapping("/get/{car_id}")
+    public CarEntityDTO getCar(@PathVariable("car_id") Long car_id)
     {
        return carService.getByCarId(car_id);
     }
 
-    @GetMapping
+
+    @GetMapping("/get-all")
     public List<CarEntityDTO>getAll()
 
     {
         return carService.getAll();
     }
 
-    @PostMapping("/poster")
-    public void addCar(@RequestBody @Valid CarEntityDTO carEntityDTO) throws java.lang.IllegalStateException
-
+    @PostMapping("/post")
+    public void addCar(@RequestBody @Valid CarEntityDTO carEntityDTO)
     {
         carService.addCar(carEntityDTO);
     }
 
     @PutMapping("/edit/{id}")
     public CarEntityDTO editCar(@RequestBody @Valid CarEntityDTO carEntityDTO, @PathVariable("id") long carId)
+
     {
         return carService.editCar(carEntityDTO, carId);
-
     }
+
     @DeleteMapping("delete/{id}")
     public void deleteCar(@PathVariable("id") long carId)
     {

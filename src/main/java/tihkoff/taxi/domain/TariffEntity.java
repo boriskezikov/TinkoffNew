@@ -1,10 +1,15 @@
 package tihkoff.taxi.domain;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "tariff")
 public class TariffEntity {
     @Id
@@ -19,9 +24,9 @@ public class TariffEntity {
     private String tariffInfo;
 
     @OneToMany(mappedBy = "tariffEntity", fetch = FetchType.EAGER)
-    private List<TaxiOrderEntity> taxiOrderEntities;
+    private List<TaxiOrderEntity> taxiOrders;
 
-    public int getPrice() { return price;    }
+   /* public int getPrice() { return price;    }
 
     public int getTariffId() { return tariffId;  }
 
@@ -31,5 +36,5 @@ public class TariffEntity {
 
     public void setTariffId(int tariffId) {   this.tariffId = tariffId;  }
 
-    public void setTariffInfo(String tariffInfo) {   this.tariffInfo = tariffInfo;    }
+    public void setTariffInfo(String tariffInfo) {   this.tariffInfo = tariffInfo;    }*/
 }
