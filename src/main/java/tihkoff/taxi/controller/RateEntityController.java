@@ -3,6 +3,7 @@ package tihkoff.taxi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tihkoff.taxi.domain.RateEntity;
 import tihkoff.taxi.dto.RateEntityDTO;
 import tihkoff.taxi.services.RateService;
 
@@ -12,12 +13,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/rate-entity")
+@RequestMapping("/rates")
 public class RateEntityController {
 
     private final RateService rateService;
 
-    @GetMapping("/get/{id}")
+    @GetMapping("{id}")
     public RateEntityDTO getRate(@PathVariable("id") Long rateID)throws NumberFormatException
     {
         return rateService.getRateById(rateID);
@@ -29,19 +30,19 @@ public class RateEntityController {
         return rateService.getAll();
     }
 
-    @PostMapping("/post")
-    public void addRate(@RequestBody @Valid RateEntityDTO rateEntityDTO) throws java.lang.IllegalStateException
+    @PostMapping
+    public RateEntityDTO addRate(@RequestBody @Valid RateEntityDTO rateEntityDTO) throws java.lang.IllegalStateException
     {
-        rateService.addRate(rateEntityDTO);
+        return rateService.addRate(rateEntityDTO);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("{id}")
     public RateEntityDTO editRate(@RequestBody @Valid RateEntityDTO rateEntityDTO, @PathVariable("id") Long rateID)
     {
         return rateService.editRate(rateEntityDTO, rateID);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public void deleteRate(@PathVariable("id") Long rateId)
     {
         rateService.deleteById(rateId);

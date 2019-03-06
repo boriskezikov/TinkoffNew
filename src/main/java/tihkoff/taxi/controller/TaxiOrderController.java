@@ -9,14 +9,14 @@ import tihkoff.taxi.services.TaxiOrderService;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping("/order-entity")
+@RequestMapping("/orders")
 @RequiredArgsConstructor
 @RestController
 public class TaxiOrderController {
     private final TaxiOrderService taxiOrderService;
 
 
-    @GetMapping("/get/{id}")
+    @GetMapping("{id}")
     public TaxiOrderDTO getOrderById(@PathVariable("id") Long orderID){
         return taxiOrderService.getByOrderID(orderID);
     }
@@ -26,18 +26,18 @@ public class TaxiOrderController {
         return taxiOrderService.getAll();
     }
 
-    @DeleteMapping("/del/{id}")
+    @DeleteMapping("{id}")
     public void deleteById(@PathVariable("id") Long orderID){
         taxiOrderService.deleteOrderByID(orderID);
     }
 
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("{id}")
     public TaxiOrderDTO editByID(@PathVariable("id") @RequestBody @Valid TaxiOrderDTO taxiOrderDTO, Long id){
         return taxiOrderService.editOrder(taxiOrderDTO,id);
     }
 
-    @PostMapping("/post")
+    @PostMapping
     public void addOrder(@RequestBody @Valid TaxiOrderDTO taxiOrderDTO){
         taxiOrderService.createOrder(taxiOrderDTO);
     }

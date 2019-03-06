@@ -37,7 +37,7 @@ CREATE TABLE CLIENT(
 );
 
 CREATE TABLE TARIFF(
-  price int check ( price > 0 ) not null,
   tariff_id int check ( tariff_id > 0 ) primary key ,
+  price int check ( price > 0 ) not null,
   tariff_info varchar(100)
 );

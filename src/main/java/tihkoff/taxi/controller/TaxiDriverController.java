@@ -11,21 +11,21 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/driver-entity")
+@RequestMapping("/drivers")
 public class TaxiDriverController {
     private final TaxiDriverService taxiDriverService;
 
-    @GetMapping("/getId/{id}")
+    @GetMapping("driversId/{id}")
     public TaxiDriverEntityDTO getDriverById(@PathVariable("id") Long driverID){
         return taxiDriverService.getById(driverID);
     }
 
-    @GetMapping("/getLic{lic}")
+    @GetMapping("/driversLic/{lic}")
     public TaxiDriverEntityDTO getDriverByLicence(@PathVariable("lic") String licence){
         return taxiDriverService.getByLicence(licence);
     }
 
-    @GetMapping("/getPass/{pass}")
+    @GetMapping("/driversPass/{pass}")
     public TaxiDriverEntityDTO getDriverByPassport(@PathVariable("pass") String passport){
         return taxiDriverService.getByPassport(passport);
     }
@@ -35,17 +35,17 @@ public class TaxiDriverController {
         return taxiDriverService.getAll();
     }
 
-    @DeleteMapping("/delId/{id}")
+    @DeleteMapping("/driversId/{id}")
     public void deleteById(@PathVariable("id") Long driverID){
         taxiDriverService.deleteById(driverID);
     }
 
-    @DeleteMapping("/delLic/{lic}")
+    @DeleteMapping("/driversLic/{lic}")
     public void deleteByLicence (@PathVariable("lic")String licence){
         taxiDriverService.deleteByLicense(licence);
     }
 
-    @DeleteMapping("/delPass/{pass}")
+    @DeleteMapping("/driversPass/{pass}")
     public void deleteByPassport(@PathVariable("pass") String passport){
         taxiDriverService.deleteByPassport(passport);
     }
@@ -55,7 +55,7 @@ public class TaxiDriverController {
         taxiDriverService.deleteAll();
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("{id}")
     public TaxiDriverEntityDTO editByID(@PathVariable("id") @RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO, Long id){
         return taxiDriverService.editDriver(taxiDriverEntityDTO,id);
     }

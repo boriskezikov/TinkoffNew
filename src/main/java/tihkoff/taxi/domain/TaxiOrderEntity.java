@@ -14,7 +14,6 @@ import javax.websocket.OnError;
 @Table(name  = "taxi_order" , schema = "public", catalog = "tinkofftaxi")
 public class TaxiOrderEntity {
 
-    /**Driver-entity connection </>*/
     @ManyToOne
     @JoinColumn(name = "id_driver", referencedColumnName = "id_driver")
     private TaxiDriverEntity taxiDriverEntity;

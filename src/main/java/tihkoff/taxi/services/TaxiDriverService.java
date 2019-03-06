@@ -8,7 +8,7 @@ import java.util.List;
 public interface TaxiDriverService {
     TaxiDriverEntityDTO getById(Long driverID);
     List<TaxiDriverEntityDTO> getAll();
-    void addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO);
+    TaxiDriverEntityDTO addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO);
     TaxiDriverEntityDTO getByLicence(String licenceNum);
     TaxiDriverEntityDTO getByPassport(String passportNum);
     void deleteAll();

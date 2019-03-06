@@ -12,11 +12,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/tariff-entity")
+@RequestMapping("/tariffs")
 public class TariffEntityController {
         private final TariffService tariffService;
 
-        @GetMapping("/get/{id}")
+        @GetMapping("{id}")
         public TariffEntityDTO getTariff(@PathVariable("id") Integer tariffID)throws NumberFormatException
         {
             return tariffService.getById(tariffID);
@@ -28,19 +28,19 @@ public class TariffEntityController {
             return tariffService.getAll();
         }
 
-        @PostMapping("/post")
-        public void addTariff(@RequestBody @Valid TariffEntityDTO tariffEntityDTO) throws java.lang.IllegalStateException
+        @PostMapping
+        public TariffEntityDTO addTariff(@RequestBody @Valid TariffEntityDTO tariffEntityDTO) throws java.lang.IllegalStateException
         {
-            tariffService.addTariff(tariffEntityDTO);
+            return tariffService.addTariff(tariffEntityDTO);
         }
 
-        @PutMapping("/edit/{id}")
+        @PutMapping("{id}")
         public TariffEntityDTO editTariff(@RequestBody @Valid TariffEntityDTO tariffEntityDTO, @PathVariable("id") Integer tariffID)
         {
             return tariffService.editTariff(tariffEntityDTO, tariffID);
         }
 
-        @DeleteMapping("delete/{id}")
+        @DeleteMapping("{id}")
         public void deleteTariff(@PathVariable("id") Integer carId)
         {
             tariffService.deleteById(carId);

@@ -15,10 +15,9 @@ public class TariffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "tariff_id")
-    private int tariffId;
+    private Integer tariffId;
 
-    @Column(name = "price")
-    private int price;
+    private Integer price;
 
     @Column (name = "tariff_info", length = 150)
     private String tariffInfo;

@@ -2,6 +2,7 @@ package tihkoff.taxi.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,7 +34,7 @@ public class TaxiDriverEntity {
     @JoinColumn(name = "car_id", referencedColumnName = "car_id", nullable = false)
     private CarEntity carEntity;
 
-    @OneToMany(mappedBy = "taxiDriverEntity")
+    @OneToMany(mappedBy = "taxiDriverEntity" , fetch =FetchType.EAGER)
     private List<TaxiOrderEntity> taxiOrders;
 
    /* public List<TaxiOrderEntity> getTaxiOrderEntities() {

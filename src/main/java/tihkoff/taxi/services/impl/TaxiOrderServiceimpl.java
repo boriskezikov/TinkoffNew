@@ -56,9 +56,9 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
     }
 
     @Override
-    public void createOrder(TaxiOrderDTO taxiOrderDTO) {
-        taxiOrderRepository
-                .save(taxiOrderMapper.taxiOrderEntityDTOmap(taxiOrderDTO));
+    public TaxiOrderDTO createOrder(TaxiOrderDTO taxiOrderDTO) {
+       return taxiOrderMapper.taxiOrderEntityMap( taxiOrderRepository
+                .save(taxiOrderMapper.taxiOrderEntityDTOmap(taxiOrderDTO)));
 
     }
 

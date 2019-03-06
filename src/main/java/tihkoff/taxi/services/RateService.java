@@ -6,7 +6,7 @@ import tihkoff.taxi.dto.RateEntityDTO;
 import java.util.List;
 
 public interface RateService {
-    void addRate(RateEntityDTO rateEntityDTO);
+    RateEntityDTO addRate(RateEntityDTO rateEntityDTO);
     List<RateEntityDTO> getAll();
     RateEntityDTO getRateById(Long rateID);
     void deleteById(Long rageID);

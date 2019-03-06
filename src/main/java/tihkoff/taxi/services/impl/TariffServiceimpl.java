@@ -30,7 +30,7 @@ public class TariffServiceimpl implements TariffService {
 
     @Override
     public void deleteById(Integer tariffID) {
-        tariffRepository.deleteByTariffId(tariffID);
+        tariffRepository.deleteById(tariffID);
 
     }
 
@@ -51,8 +51,8 @@ public class TariffServiceimpl implements TariffService {
     }
 
     @Override
-    public void addTariff(TariffEntityDTO tariffEntityDTO) {
-        tariffRepository.save(tariffEntityMapper.tariffEntityDTOmap(tariffEntityDTO));
+    public TariffEntityDTO addTariff(TariffEntityDTO tariffEntityDTO) {
+        return tariffEntityMapper.tariffEntityMap(tariffRepository.save(tariffEntityMapper.tariffEntityDTOmap(tariffEntityDTO)));
 
     }
 

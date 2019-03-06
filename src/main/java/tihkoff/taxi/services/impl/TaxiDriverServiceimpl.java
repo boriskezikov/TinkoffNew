@@ -33,10 +33,10 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
     }
 
     @Override
-    public void addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO) {
-        taxiDriverEntityRepository
+    public TaxiDriverEntityDTO addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO) {
+        return taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntityRepository
                 .save(taxiDriverEntityMapper
-                        .taxiDriverDTOmap(taxiDriverEntityDTO));
+                        .taxiDriverDTOmap(taxiDriverEntityDTO)));
 
     }
 

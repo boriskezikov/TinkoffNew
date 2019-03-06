@@ -5,7 +5,7 @@ import tihkoff.taxi.dto.CarEntityDTO;
 import java.util.List;
 
 public interface CarService {
-    void addCar(CarEntityDTO DTO);
+    CarEntityDTO addCar(CarEntityDTO DTO);
     List<CarEntityDTO> getAll();
     void deleteById(Long id);
     void deleteAll();
