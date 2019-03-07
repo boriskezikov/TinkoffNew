@@ -145,7 +145,7 @@ public class TariffControllerCRUDTest {
         TariffEntityDTO factsheet = mapper.readValue(json, TariffEntityDTO.class);
         TariffEntityDTO expected = tariffEntityMapper.tariffEntityMap(tariffRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "tariffId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "Id");
     }
 
     @Test

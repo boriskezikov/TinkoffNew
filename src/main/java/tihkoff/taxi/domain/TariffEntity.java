@@ -22,8 +22,7 @@ public class TariffEntity {
     @Column (name = "tariff_info", length = 150)
     private String tariffInfo;
 
-    @OneToMany(mappedBy = "tariffEntity", cascade = CascadeType.ALL)
-    private List<TaxiOrderEntity> taxiOrders;
+
 
 
 }

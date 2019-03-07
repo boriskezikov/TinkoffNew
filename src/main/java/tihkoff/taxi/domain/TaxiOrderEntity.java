@@ -17,7 +17,7 @@ public class TaxiOrderEntity {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_driver", referencedColumnName = "id_driver")
     private TaxiDriverEntity taxiDriverEntity;
 
@@ -32,7 +32,7 @@ public class TaxiOrderEntity {
     private int status;
 
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "tariff_id", referencedColumnName = "tariff_id")
     private TariffEntity tariffEntity;
 

@@ -112,15 +112,16 @@ public class OrderControllerCRUDTest {
         tariffEntity = tariffRepository.save(tariffEntity);
         carEntity = carRepository.save(carEntity);
         taxiDriverEntity.setCarEntity(carEntity);
+        System.out.println();
         taxiDriverEntity = taxiDriverEntityRepository.save(taxiDriverEntity);
 
         taxiOrderEntity.setStatus(0);
         taxiOrderEntity.setClientEntity(clientEntity);
         taxiOrderEntity.setClientLocation("kfkfkf");
-        taxiOrderEntity.setTaxiDriverEntity(taxiDriverEntity);
         taxiOrderEntity.setRateEntity(rateEntity);
         taxiOrderEntity.setTariffEntity(tariffEntity);
         taxiOrderEntity.setDestination("kkf");
+        taxiOrderEntity.setTaxiDriverEntity(taxiDriverEntity);
 
         taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
 

@@ -33,8 +33,8 @@ public class TaxiDriverEntity {
     @JoinColumn(name = "car_id", referencedColumnName = "car_id")
     private CarEntity carEntity;
 
-    @OneToMany(mappedBy = "taxiDriverEntity")
-    private List<TaxiOrderEntity> taxiOrders;
+    @OneToOne(mappedBy = "taxiDriverEntity")
+    private TaxiOrderEntity taxiOrder;
 
 
 }
