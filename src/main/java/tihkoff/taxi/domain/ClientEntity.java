@@ -1,6 +1,7 @@
 package tihkoff.taxi.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,19 +25,9 @@ public class ClientEntity {
     private Boolean status;
 
     /**taxi-order connection </>*/
-    @OneToMany (mappedBy = "clientEntity", fetch = FetchType.EAGER)
+    @OneToMany (mappedBy = "clientEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TaxiOrderEntity> taxiOrders;
 
 
-    /*public String getPhoneNumber(){return phoneNumber;    }
 
-    public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;    }
-
-    public String getName(){return name;    }
-
-    public void setName(String name) {this.name = name;    }
-
-    public Boolean getStatus() {return status;  }
-
-    public void setStatus(Boolean status) {this.status = status;    }*/
 }

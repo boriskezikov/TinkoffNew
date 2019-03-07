@@ -33,10 +33,10 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
     }
 
     @Override
-    public void addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO) {
-        taxiDriverEntityRepository
+    public TaxiDriverEntityDTO addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO) {
+        return taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntityRepository
                 .save(taxiDriverEntityMapper
-                        .taxiDriverDTOmap(taxiDriverEntityDTO));
+                        .taxiDriverDTOmap(taxiDriverEntityDTO)));
 
     }
 
@@ -82,11 +82,12 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
     }
 
     @Override
-    public TaxiDriverEntityDTO editDriver(TaxiDriverEntityDTO taxiDriverEntityDTO, Long driverID) {
-        TaxiDriverEntity taxiDriverEntity = taxiDriverEntityMapper.taxiDriverDTOmap(getById(driverID));
-        taxiDriverEntityDTO.setDriverID(driverID);
+    public TaxiDriverEntityDTO editDriver(TaxiDriverEntityDTO taxiDriverEntityDTO, Long driverId) {
+        TaxiDriverEntity taxiDriverEntity = taxiDriverEntityMapper.taxiDriverDTOmap(getById(driverId));
+        taxiDriverEntityDTO.setId(driverId);
         return taxiDriverEntityMapper
                 .taxiDriverMap(taxiDriverEntityRepository
-                        .save(taxiDriverEntityMapper.updateTaxiDriver(taxiDriverEntityDTO,taxiDriverEntity)));
+                        .save(taxiDriverEntityMapper
+                                .updateTaxiDriver(taxiDriverEntityDTO,taxiDriverEntity)));
     }
 }

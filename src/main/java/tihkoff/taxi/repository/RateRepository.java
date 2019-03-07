@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface RateRepository extends JpaRepository<RateEntity, Long> {
-    void deleteByOrderId(Long orderID);
     void deleteAll();
 }

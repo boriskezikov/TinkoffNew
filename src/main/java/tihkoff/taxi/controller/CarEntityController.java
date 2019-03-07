@@ -20,38 +20,38 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/car-entity")
+@RequestMapping("/cars")
 public class CarEntityController {
     private final CarService carService;
 
-    @GetMapping("/get/{car_id}")
+    @GetMapping("{car_id}")
     public CarEntityDTO getCar(@PathVariable("car_id") Long car_id)
     {
        return carService.getByCarId(car_id);
     }
 
 
-    @GetMapping("/get-all")
+    @GetMapping
     public List<CarEntityDTO>getAll()
 
     {
         return carService.getAll();
     }
 
-    @PostMapping("/post")
-    public void addCar(@RequestBody @Valid CarEntityDTO carEntityDTO)
+    @PostMapping
+    public CarEntityDTO addCar(@RequestBody @Valid CarEntityDTO carEntityDTO)
     {
-        carService.addCar(carEntityDTO);
+        return carService.addCar(carEntityDTO);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("{id}")
     public CarEntityDTO editCar(@RequestBody @Valid CarEntityDTO carEntityDTO, @PathVariable("id") long carId)
 
     {
         return carService.editCar(carEntityDTO, carId);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public void deleteCar(@PathVariable("id") long carId)
     {
         carService.deleteById(carId);

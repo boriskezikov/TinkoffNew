@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class TaxiDriverEntityDTO {
-    private Long driverID;
+    private Long id;
 
     private String licenseNumber;
 

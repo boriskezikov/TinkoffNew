@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class CarEntityDTO {
-    private Long  carId;
+    private Long id;
 
     private Long manufacturerId;
 
@@ -22,6 +23,6 @@ public class CarEntityDTO {
 
     private String modelInfo;
 
-    private List<TaxiDriverEntityDTO> taxiDrivers;
+    private List<TaxiDriverEntityDTO> taxiDrivers = new ArrayList<>();
 
 }

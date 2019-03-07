@@ -6,7 +6,7 @@ import tihkoff.taxi.dto.ClientEntityDTO;
 import java.util.List;
 
 public interface ClientService {
-    void addClient(ClientEntityDTO clientEntityDTO);
+    ClientEntityDTO addClient(ClientEntityDTO clientEntityDTO);
     List<ClientEntityDTO> getAll();
     void deleteByPhone(String phone);
     void deleteAll();

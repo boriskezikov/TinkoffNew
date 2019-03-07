@@ -27,9 +27,8 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public void addCar(CarEntityDTO carEntityDTO) {
-
-        carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
+    public CarEntityDTO addCar(CarEntityDTO carEntityDTO) {
+        return carEntityMapper.carEntityMap(carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO)));
     }
 
     @Override
@@ -53,7 +52,7 @@ public class CarServiceimpl implements CarService {
         {
 
             CarEntity carEntity = carEntityMapper.carEntityDTOmap(getByCarId(carId));
-            carEntityDTO.setCarId(carId);
+            carEntityDTO.setId(carId);
             return carEntityMapper.
                     carEntityMap(carRepository.
                             save(carEntityMapper.

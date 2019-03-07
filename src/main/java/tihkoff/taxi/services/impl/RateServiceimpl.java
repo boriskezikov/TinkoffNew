@@ -17,8 +17,8 @@ public class RateServiceimpl implements RateService {
     private final RateEntityMapper rateEntityMapper;
 
     @Override
-    public void addRate(RateEntityDTO rateEntityDTO) {
-        rateRepository.save(rateEntityMapper.rateEntityDTOmap(rateEntityDTO));
+    public RateEntityDTO addRate(RateEntityDTO rateEntityDTO) {
+       return rateEntityMapper.rateEntityMAp(rateRepository.save(rateEntityMapper.rateEntityDTOmap(rateEntityDTO)));
 
     }
 
@@ -34,7 +34,7 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public void deleteById(Long rateID) {
-        rateRepository.deleteByOrderId(rateID);
+        rateRepository.deleteById(rateID);
 
     }
 
@@ -46,7 +46,7 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public RateEntityDTO editRate(RateEntityDTO rateEntityDTO, Long rateID) {
-        rateEntityDTO.setOrderId(rateID);
+        rateEntityDTO.setId(rateID);
         return rateEntityMapper.
                 rateEntityMAp(rateRepository.
                         save(rateEntityMapper.

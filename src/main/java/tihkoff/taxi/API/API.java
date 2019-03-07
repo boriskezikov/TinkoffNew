@@ -14,19 +14,18 @@ import tihkoff.taxi.dto.TaxiOrderDTO;
 import java.lang.reflect.Executable;
 import java.util.List;
 
+import static tihkoff.taxi.API.ApiCalls.changeOrderStatus;
+import static tihkoff.taxi.API.ApiCalls.setUpTariff;
+
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api-call")
+@RequestMapping("/api")
 public class API {
-    private final CarEntityController carEntityController;
-    private final TariffEntityController tariffEntityController;
-    private final ClientEntityController clientEntityController;
-    private final RateEntityController rateEntityController;
-    private final TaxiDriverController taxiDriverController;
+
     private final TaxiOrderController taxiOrderController;
 
-    @PostMapping("/order/start")
+    @PostMapping
     public TaxiOrderDTO startSetOrder(@RequestBody PrimaryData primaryData) {
         TaxiOrderDTO taxiOrderDTO = new TaxiOrderDTO();
         ClientEntityDTO clientEntityDTO = new ClientEntityDTO();
@@ -34,7 +33,7 @@ public class API {
         clientEntityDTO.setName(primaryData.getName());
         clientEntityDTO.setStatus(primaryData.getStatus());
         taxiOrderDTO.setClientEntity(clientEntityDTO);
-        taxiOrderDTO = searchDriver(taxiOrderDTO);
+        taxiOrderDTO = ApiCalls.searchDriver(taxiOrderDTO);
         taxiOrderDTO = setUpTariff(taxiOrderDTO);
         if(taxiOrderDTO.getTaxiDriverEntity() != null){
             taxiOrderDTO = changeOrderStatus(taxiOrderDTO,1);
@@ -47,37 +46,10 @@ public class API {
     }
 
 
-    public TaxiOrderDTO searchDriver (TaxiOrderDTO taxiOrderDTO){
-            List<TaxiDriverEntityDTO> drivers= taxiDriverController.getAll();
-            for (int i = 0; i< drivers.size(); ++i){
-                if(drivers.get(i).getStatus() == 0){
-                   taxiOrderDTO.setTaxiDriverEntity(drivers.get(i));
-                   break;
-                }
-            }
-            return taxiOrderDTO;
 
-        }
 
-    public TaxiOrderDTO setUpTariff (TaxiOrderDTO taxiOrderDTO){
-        List<TariffEntityDTO> tariff = tariffEntityController.getAll();
-            for (int i = 0; i < tariff.size(); ++i)
-                  {
-                      taxiOrderDTO.setTariffEntity(tariff.get(i));
-                      break;
-            }
-            return taxiOrderDTO;
-        }
-
-    public TaxiOrderDTO changeOrderStatus (TaxiOrderDTO taxiOrderDTO, Integer status){
-        if (status==0|| status == 1|| status == 2){
-            taxiOrderDTO.setStatus(status);
-            return taxiOrderDTO;
-        }
-
-            return null;
         }
 
 
 
-}
+

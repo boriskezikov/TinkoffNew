@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,6 +17,6 @@ public class ClientEntityDTO {
 
     private Boolean status;
 
-    private List<TaxiOrderDTO> taxiOrders;
+    private List<TaxiOrderDTO> taxiOrders = new ArrayList<>();
 
 }

@@ -13,7 +13,7 @@ public interface TariffService {
     void deleteAll();
     List<TariffEntityDTO>getByPriceLess(Integer price);
     List<TariffEntityDTO>getByPriceGreater(Integer price);
-    void addTariff(TariffEntityDTO tariffEntityDTO);
+    TariffEntityDTO addTariff(TariffEntityDTO tariffEntityDTO);
     TariffEntityDTO editTariff (TariffEntityDTO tariffEntityDTO, Integer tariffID);
 
 

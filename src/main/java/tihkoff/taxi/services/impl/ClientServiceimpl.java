@@ -19,9 +19,8 @@ public class ClientServiceimpl implements ClientService {
     public final ClientEntityMapper clientEntityMapper;
 
     @Override
-    public void addClient(ClientEntityDTO clientEntityDTO) {
-
-        clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
+    public ClientEntityDTO addClient(ClientEntityDTO clientEntityDTO) {
+        return clientEntityMapper.clientEntityMap(clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO)));
     }
 
     @Override
@@ -31,7 +30,8 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public void deleteByPhone(String phone) {
-        clientRepository.deleteByPhoneNumber(phone);
+
+        this.clientRepository.deleteByPhoneNumber(phone);
     }
 
     @Override
