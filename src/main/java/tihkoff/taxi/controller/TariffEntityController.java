@@ -21,6 +21,15 @@ public class TariffEntityController {
         {
             return tariffService.getById(tariffID);
         }
+        @GetMapping("/more/{price}")
+        public List<TariffEntityDTO> getTariffsGraterThan(@PathVariable("price") Integer price) throws Exception{
+            return tariffService.getByPriceGreater(price);
+        }
+
+        @GetMapping("/less/{price}")
+        public List<TariffEntityDTO> getTariffsLessThan(@PathVariable("price") Integer price) throws Exception{
+            return tariffService.getByPriceLess(price);
+        }
 
         @GetMapping
         public List<TariffEntityDTO> getAll()

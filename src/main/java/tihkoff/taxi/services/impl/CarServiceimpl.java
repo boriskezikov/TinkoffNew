@@ -52,7 +52,7 @@ public class CarServiceimpl implements CarService {
         {
 
             CarEntity carEntity = carEntityMapper.carEntityDTOmap(getByCarId(carId));
-            carEntityDTO.setCarId(carId);
+            carEntityDTO.setId(carId);
             return carEntityMapper.
                     carEntityMap(carRepository.
                             save(carEntityMapper.

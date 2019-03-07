@@ -46,7 +46,7 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public RateEntityDTO editRate(RateEntityDTO rateEntityDTO, Long rateID) {
-        rateEntityDTO.setOrderId(rateID);
+        rateEntityDTO.setId(rateID);
         return rateEntityMapper.
                 rateEntityMAp(rateRepository.
                         save(rateEntityMapper.

@@ -94,7 +94,7 @@ public class TariffControllerCRUDTest {
     @Test
     public void getTariffsByIdTest() throws Exception {
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/tariffs/" + tariffEntity.getTariffId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/tariffs/" + tariffEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -134,7 +134,7 @@ public class TariffControllerCRUDTest {
     public void editTariffTest() throws Exception {
         String json = mapper.writeValueAsString(tariffEntityDTO);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/tariffs/" + tariffEntity.getTariffId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/tariffs/" + tariffEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isOk())
@@ -151,7 +151,7 @@ public class TariffControllerCRUDTest {
     @Test
 
     public void deleteTariffTest() throws Exception {
-        Integer tariffId = tariffEntity.getTariffId();
+        Integer tariffId = tariffEntity.getId();
         mvc.perform(MockMvcRequestBuilders.delete("/tariffs/" + tariffId)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());

@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class RateEntityDTO {
-    private Long orderId;
+    private Long id;
 
     private String review;
 

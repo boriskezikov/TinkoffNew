@@ -65,7 +65,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
     @Override
     public TaxiOrderDTO editOrder(TaxiOrderDTO taxiOrderDTO, Long orderID) {
         TaxiOrderEntity taxiOrderEntity = taxiOrderMapper.taxiOrderEntityDTOmap(getByOrderID(orderID));
-        taxiOrderDTO.setOrderId(orderID);
+        taxiOrderDTO.setId(orderID);
         return taxiOrderMapper
                 .taxiOrderEntityMap(taxiOrderRepository
                         .save(taxiOrderMapper

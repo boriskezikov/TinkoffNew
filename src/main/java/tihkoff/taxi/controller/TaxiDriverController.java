@@ -15,7 +15,7 @@ import java.util.List;
 public class TaxiDriverController {
     private final TaxiDriverService taxiDriverService;
 
-    @GetMapping("driversId/{id}")
+    @GetMapping("/driversId/{id}")
     public TaxiDriverEntityDTO getDriverById(@PathVariable("id") Long driverID){
         return taxiDriverService.getById(driverID);
     }
@@ -55,14 +55,14 @@ public class TaxiDriverController {
         taxiDriverService.deleteAll();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public TaxiDriverEntityDTO editByID(@PathVariable("id") @RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO, Long id){
         return taxiDriverService.editDriver(taxiDriverEntityDTO,id);
     }
 
     @PostMapping
-    public void addDriver(@RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO){
-         taxiDriverService.addDriver(taxiDriverEntityDTO);
+    public TaxiDriverEntityDTO addDriver(@RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO){
+        return  taxiDriverService.addDriver(taxiDriverEntityDTO);
     }
 
 }

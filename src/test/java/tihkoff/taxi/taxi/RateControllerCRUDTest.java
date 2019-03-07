@@ -1,5 +1,4 @@
 package tihkoff.taxi.taxi;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
@@ -18,14 +17,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import tihkoff.taxi.domain.RateEntity;
-import tihkoff.taxi.domain.TariffEntity;
 import tihkoff.taxi.dto.RateEntityDTO;
 import tihkoff.taxi.mapper.RateEntityMapper;
 import tihkoff.taxi.repository.RateRepository;
-
-import javax.transaction.Transactional;
 import java.util.List;
-
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -93,7 +88,7 @@ public class RateControllerCRUDTest {
     @Test
     public void getRatesByIdTest() throws Exception {
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/rates/" + rateEntity.getOrderId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/rates/" + rateEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -126,14 +121,14 @@ public class RateControllerCRUDTest {
         RateEntityDTO factsheet = mapper.readValue(jsonFile, RateEntityDTO.class);
         RateEntityDTO expected = rateEntityMapper.rateEntityMAp(rateRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "orderId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
     }
 
     @Test
     public void editRateTest() throws Exception {
         String json = mapper.writeValueAsString(rateEntityDTO);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/rates/" + rateEntity.getOrderId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/rates/" + rateEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isOk())
@@ -144,13 +139,13 @@ public class RateControllerCRUDTest {
         RateEntityDTO factsheet = mapper.readValue(json, RateEntityDTO.class);
         RateEntityDTO expected = rateEntityMapper.rateEntityMAp(rateRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "orderId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
     }
 
     @Test
     //@Transactional
     public void deleteRateTest() throws Exception {
-        Long id = rateEntity.getOrderId();
+        Long id = rateEntity.getId();
         mvc.perform(MockMvcRequestBuilders.delete("/rates/" + id)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

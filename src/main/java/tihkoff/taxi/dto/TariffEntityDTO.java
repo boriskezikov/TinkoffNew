@@ -14,7 +14,7 @@ public class TariffEntityDTO {
 
     private Integer price;
 
-    private Integer tariffId;
+    private Integer Id;
 
     private String tariffInfo;
 

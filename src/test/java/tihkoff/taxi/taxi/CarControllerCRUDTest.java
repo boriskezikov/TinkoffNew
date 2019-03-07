@@ -92,7 +92,7 @@ public class CarControllerCRUDTest {
     @Test
     public void getCarByIdTest() throws Exception {
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/cars/" + carEntity.getCarId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/cars/" + carEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -122,14 +122,14 @@ public class CarControllerCRUDTest {
         CarEntityDTO factsheet = mapper.readValue(jsonFile, CarEntityDTO.class);
         CarEntityDTO expected = carEntityMapper.carEntityMap(carRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "carId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "Id");
     }
 
     @Test
     public void editCarTest() throws Exception {
         String json = mapper.writeValueAsString(carEntityDTO);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/cars/" + carEntity.getCarId())
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/cars/" + carEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isOk())
@@ -140,14 +140,14 @@ public class CarControllerCRUDTest {
         CarEntityDTO factsheet = mapper.readValue(json, CarEntityDTO.class);
         CarEntityDTO expected = carEntityMapper.carEntityMap(carRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "carId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "Id");
     }
 
     @Test
     public void deleteCarTest() throws Exception {
         carRepository.deleteAll();
         carRepository.save(carEntityMapper.carEntityDTOmap(carEntityDTO));
-        mvc.perform(MockMvcRequestBuilders.delete("/cars/" + carRepository.findAll().get(0).getCarId())
+        mvc.perform(MockMvcRequestBuilders.delete("/cars/" + carRepository.findAll().get(0).getId())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())

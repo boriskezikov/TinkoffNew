@@ -22,7 +22,7 @@ public class TaxiOrderDTO {
 
     private TariffEntityDTO tariffEntity;
 
-    private Long orderId;
+    private Long id;
 
     private RateEntityDTO rateEntity;
 

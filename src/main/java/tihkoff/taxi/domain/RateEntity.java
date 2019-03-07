@@ -18,7 +18,7 @@ public class RateEntity {
     @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    private long orderId;
+    private long id;
 
     @Column(name="review", length = 250)
     @NotNull
@@ -29,24 +29,5 @@ public class RateEntity {
     private TaxiOrderEntity taxiOrderEntity;
 
 
-   /* public Long getOrderId(){
-        return orderId;
-    }
-    public String getReview(){
-        return review;
-    }
-    public void setOrderId(Long carId) {
-        this.orderId = carId;
-    }
-    public void setReview(String review){
-        this.review = review;
-    }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
-    public TaxiOrderEntity getTaxiOrderEntity() {
-        return taxiOrderEntity;
-    }*/
 }

@@ -2,7 +2,6 @@ package tihkoff.taxi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tihkoff.taxi.domain.TaxiOrderEntity;
 import tihkoff.taxi.dto.TaxiOrderDTO;
 import tihkoff.taxi.services.TaxiOrderService;
 
@@ -17,28 +16,29 @@ public class TaxiOrderController {
 
 
     @GetMapping("{id}")
-    public TaxiOrderDTO getOrderById(@PathVariable("id") Long orderID){
-        return taxiOrderService.getByOrderID(orderID);
+    public TaxiOrderDTO getOrderById(@PathVariable("id") Long orderId) {
+        return taxiOrderService.getByOrderID(orderId);
     }
 
     @GetMapping
-    public List<TaxiOrderDTO> getAll(){
+    public List<TaxiOrderDTO> getAll() {
         return taxiOrderService.getAll();
     }
 
     @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") Long orderID){
+    public void deleteById(@PathVariable("id") Long orderID) {
         taxiOrderService.deleteOrderByID(orderID);
     }
 
 
     @PutMapping("{id}")
-    public TaxiOrderDTO editByID(@PathVariable("id") @RequestBody @Valid TaxiOrderDTO taxiOrderDTO, Long id){
-        return taxiOrderService.editOrder(taxiOrderDTO,id);
+    public TaxiOrderDTO editById(@PathVariable("id") @RequestBody @Valid TaxiOrderDTO taxiOrderDTO, Long id) {
+        return taxiOrderService.editOrder(taxiOrderDTO, id);
     }
 
     @PostMapping
-    public void addOrder(@RequestBody @Valid TaxiOrderDTO taxiOrderDTO){
-        taxiOrderService.createOrder(taxiOrderDTO);
+    public TaxiOrderDTO addOrder(@RequestBody @Valid TaxiOrderDTO taxiOrderDTO) {
+
+        return taxiOrderService.createOrder(taxiOrderDTO);
     }
 }

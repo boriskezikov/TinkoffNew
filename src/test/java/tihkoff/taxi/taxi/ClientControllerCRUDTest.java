@@ -36,6 +36,7 @@ public class ClientControllerCRUDTest {
     private ClientEntityDTO clientEntityDTO = new ClientEntityDTO();
     private ClientEntityDTO clientEntityDTO2 = new ClientEntityDTO();
     private ClientEntity clientEntity;
+    private ClientEntity clientEntity2;
 
     @Autowired
     private ClientEntityMapper clientEntityMapper;
@@ -48,17 +49,20 @@ public class ClientControllerCRUDTest {
 
     @Before
     public void setUp() {
+        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+
         clientRepository.deleteAll();
 
         clientEntityDTO.setStatus(true);
         clientEntityDTO.setName("Boris");
         clientEntityDTO.setPhoneNumber("79308196302");
-        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+
         clientEntityDTO2.setPhoneNumber("79308991239");
         clientEntityDTO2.setName("Polina");
         clientEntityDTO2.setStatus(false);
+
         clientEntity = clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
-        clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO2));
+        clientEntity2 =  clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO2));
 
     }
 
@@ -112,7 +116,7 @@ public class ClientControllerCRUDTest {
         ClientEntityDTO factsheet = mapper.readValue(jsonFile, ClientEntityDTO.class);
         ClientEntityDTO expected = clientEntityMapper.clientEntityMap(clientRepository.findAll().get(0));
 
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "carId");
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
     }
 
     @Test
