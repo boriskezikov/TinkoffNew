@@ -24,8 +24,7 @@ public class ClientEntity {
     @Column (name= "status", nullable = false)
     private Boolean status;
 
-    /**taxi-order connection </>*/
-    @OneToMany (mappedBy = "clientEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany (mappedBy = "clientEntity")
     private List<TaxiOrderEntity> taxiOrders;
 
 

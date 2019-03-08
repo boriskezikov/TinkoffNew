@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tihkoff.taxi.dto.TaxiOrderDTO;
 import tihkoff.taxi.services.TaxiOrderService;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,9 +27,11 @@ public class TaxiOrderController {
     }
 
     @DeleteMapping("{id}")
+
     public void deleteById(@PathVariable("id") Long orderID) {
         taxiOrderService.deleteOrderByID(orderID);
     }
+
 
 
     @PutMapping("{id}")

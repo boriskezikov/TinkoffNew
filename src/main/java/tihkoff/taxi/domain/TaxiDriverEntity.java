@@ -29,7 +29,7 @@ public class TaxiDriverEntity {
     @Column(length = 12)
     private String passport;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "car_id", referencedColumnName = "car_id")
     private CarEntity carEntity;
 

@@ -88,32 +88,27 @@ public class OrderControllerCRUDTest {
 
         carEntity.setManufacturerId(12L);
         carEntity.setCategory(1);
-        carEntity.setModelInfo("kgkg");
+        carEntity.setModelInfo(RandomStringUtils.randomAlphabetic(8));
         carEntity.setTechCondition(5);
+        carEntity = carRepository.save(carEntity);
 
         clientEntity.setStatus(true);
-        clientEntity.setPhoneNumber("79308192357");
+        clientEntity.setPhoneNumber(RandomStringUtils.randomNumeric(10));
         clientEntity.setName(RandomStringUtils.randomNumeric(8));
+        clientEntity = clientRepository.save(clientEntity);
 
         tariffEntity.setTariffInfo(RandomStringUtils.randomNumeric(8));
         tariffEntity.setPrice(124);
+        tariffEntity = tariffRepository.save(tariffEntity);
 
         taxiDriverEntity.setStatus(1);
         taxiDriverEntity.setPassport(RandomStringUtils.randomNumeric(8));
         taxiDriverEntity.setLicenseNumber(RandomStringUtils.randomNumeric(8));
-        taxiDriverEntity.setName("kori");
-
-
-        rateEntity.setReview("kfkfkf");
-
-
-
-        clientEntity = clientRepository.save(clientEntity);
-        tariffEntity = tariffRepository.save(tariffEntity);
-        carEntity = carRepository.save(carEntity);
+        taxiDriverEntity.setName(RandomStringUtils.randomAlphabetic(8));
         taxiDriverEntity.setCarEntity(carEntity);
-        System.out.println();
         taxiDriverEntity = taxiDriverEntityRepository.save(taxiDriverEntity);
+
+        rateEntity.setReview(" ");
 
         taxiOrderEntity.setStatus(0);
         taxiOrderEntity.setClientEntity(clientEntity);
@@ -125,21 +120,30 @@ public class OrderControllerCRUDTest {
 
         taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
 
+
+
+
+
+
+
+
+
+    }
+    
+    @After
+    public void tearDown(){
+
+        taxiOrderRepository.deleteAll();
+        taxiDriverEntityRepository.deleteAll();
+        clientRepository.deleteAll();
+        tariffRepository.deleteAll();
+        rateRepository.deleteAll();
+        carRepository.deleteAll();
+
     }
 
-//    @After
-//    public void tearDown() {
-//        taxiOrderRepository.deleteAll();
-//        taxiDriverEntityRepository.deleteAll();
-//        rateRepository.deleteAll();
-//        tariffRepository.deleteAll();
-//        carRepository.deleteAll();
-//        clientRepository.deleteAll();
-//
-//    }
 
-
-    @Test
+  //  @Test
     public void getOrders() throws Exception {
         String uri = "/orders/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
@@ -154,7 +158,7 @@ public class OrderControllerCRUDTest {
 
     }
 
-    @Test
+   // @Test
     public void getOrderByIdTest() throws Exception {
         String uri = "/orders/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + taxiOrderEntity.getId())
