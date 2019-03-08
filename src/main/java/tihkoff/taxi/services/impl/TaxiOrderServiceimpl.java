@@ -30,34 +30,41 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
 
     @Override
     public List<TaxiOrderDTO> getByDriver(TaxiDriverEntity taxiDriverEntity) {
-        return taxiOrderMapper.conveter(taxiOrderRepository.getByTaxiDriverEntity(taxiDriverEntity));
+        return taxiOrderMapper
+                .conveter(taxiOrderRepository
+                        .getByTaxiDriverEntity(taxiDriverEntity));
     }
 
     @Override
     public List<TaxiOrderDTO> getByClientEntity(ClientEntity clientEntity) {
-        return taxiOrderMapper.conveter(taxiOrderRepository.getByClientEntity(clientEntity));
+        return taxiOrderMapper
+                .conveter(taxiOrderRepository
+                        .getByClientEntity(clientEntity));
     }
 
     @Override
     public List<TaxiOrderDTO> getByTariff(TariffEntity tariffEntity) {
-        return taxiOrderMapper.conveter(taxiOrderRepository.getByTariffEntity(tariffEntity));
+        return taxiOrderMapper
+                .conveter(taxiOrderRepository
+                        .getByTariffEntity(tariffEntity));
     }
 
     @Override
     public List<TaxiOrderDTO> getAll() {
-        return taxiOrderMapper.conveter(taxiOrderRepository.findAll());
+        return taxiOrderMapper
+                .conveter(taxiOrderRepository.findAll());
     }
-
 
 
     @Override
     public List<TaxiOrderDTO> getByOrderStatus(Integer orderStatus) {
-        return taxiOrderMapper.conveter(taxiOrderRepository.getByStatus(orderStatus));
+        return taxiOrderMapper
+                .conveter(taxiOrderRepository.getByStatus(orderStatus));
     }
 
     @Override
     public TaxiOrderDTO createOrder(TaxiOrderDTO taxiOrderDTO) {
-       return taxiOrderMapper.taxiOrderEntityMap( taxiOrderRepository
+        return taxiOrderMapper.taxiOrderEntityMap(taxiOrderRepository
                 .save(taxiOrderMapper.taxiOrderEntityDTOmap(taxiOrderDTO)));
 
     }
@@ -69,7 +76,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
         return taxiOrderMapper
                 .taxiOrderEntityMap(taxiOrderRepository
                         .save(taxiOrderMapper
-                                .updateOrder(taxiOrderDTO,taxiOrderEntity)));
+                                .updateOrder(taxiOrderDTO, taxiOrderEntity)));
     }
 
     @Override
@@ -77,7 +84,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
         TaxiOrderEntity taxiOrderEntity = taxiOrderMapper.taxiOrderEntityDTOmap(getByOrderID(orderID));
         return taxiOrderMapper
                 .taxiOrderEntityMap(taxiOrderRepository
-                        .save(taxiOrderMapper.updateOrder(taxiOrderDTO,taxiOrderEntity)));
+                        .save(taxiOrderMapper.updateOrder(taxiOrderDTO, taxiOrderEntity)));
     }
 
 

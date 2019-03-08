@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import tihkoff.taxi.domain.TaxiDriverEntity;
+import tihkoff.taxi.dto.CarEntityDTO;
 import tihkoff.taxi.dto.TaxiDriverEntityDTO;
 import tihkoff.taxi.mapper.TaxiDriverEntityMapper;
 import tihkoff.taxi.repository.TaxiDriverEntityRepository;
@@ -56,6 +57,10 @@ public class DriverControllerCRUDTest {
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
         taxiDriverEntityRepository.deleteAll();
 
+        CarEntityDTO carEntityDTO = new CarEntityDTO();
+        carEntityDTO.setManufacturerId(12L);
+        carEntityDTO.setModelInfo(";ldas");
+
 
         taxiDriverEntityDTO.setPassport("14885");
         taxiDriverEntityDTO.setLicenseNumber("9884189");
@@ -74,9 +79,10 @@ public class DriverControllerCRUDTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         taxiDriverEntityRepository.deleteAll();
     }
+
 
     @Test
     public void getAllDriversTest() throws Exception {
@@ -101,8 +107,10 @@ public class DriverControllerCRUDTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
+
         TaxiDriverEntityDTO expected = taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntity);
         TaxiDriverEntityDTO factsheet = mapper.readValue(mvcResult.getResponse().getContentAsString(), TaxiDriverEntityDTO.class);
+
         Assertions.assertThat(expected).isEqualToComparingFieldByField(factsheet);
     }
 
@@ -112,14 +120,14 @@ public class DriverControllerCRUDTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/drivers/" + taxiDriverEntity.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
-               // .andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
-
 
         json = mvcResult.getResponse().getContentAsString();
         TaxiDriverEntityDTO expected = taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntity);
         TaxiDriverEntityDTO factsheet = mapper.readValue(json, TaxiDriverEntityDTO.class);
+
         Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
 
 
@@ -132,7 +140,9 @@ public class DriverControllerCRUDTest {
         mvc.perform(MockMvcRequestBuilders.delete("/drivers/driversId/" + taxiDriverEntity.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
+
         List<TaxiDriverEntity> list = taxiDriverEntityRepository.findAll();
+
         Assertions.assertThat(list.isEmpty()).isTrue();
     }
 
@@ -150,6 +160,7 @@ public class DriverControllerCRUDTest {
         json = mvcResult.getResponse().getContentAsString();
         TaxiDriverEntityDTO factsheet = mapper.readValue(json, TaxiDriverEntityDTO.class);
         TaxiDriverEntityDTO expected = taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntityRepository.findAll().get(0));
+
         Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
     }
 

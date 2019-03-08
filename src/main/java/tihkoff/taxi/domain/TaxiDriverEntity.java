@@ -2,10 +2,16 @@ package tihkoff.taxi.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.List;
 
+
+@NamedEntityGraph(
+        name = "driver-entity-graph",
+        attributeNodes = {
+                @NamedAttributeNode("carEntity"),
+                @NamedAttributeNode("taxiOrder"),
+        }
+)
 @Entity
 @Table(name = "taxi_driver")
 @Getter
@@ -29,7 +35,7 @@ public class TaxiDriverEntity {
     @Column(length = 12)
     private String passport;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "car_id", referencedColumnName = "car_id")
     private CarEntity carEntity;
 

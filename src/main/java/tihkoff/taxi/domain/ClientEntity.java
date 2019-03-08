@@ -1,13 +1,14 @@
 package tihkoff.taxi.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+
+
+
+
 
 @Entity
 @Getter
@@ -23,10 +24,6 @@ public class ClientEntity {
 
     @Column (name= "status", nullable = false)
     private Boolean status;
-
-    /**taxi-order connection </>*/
-    @OneToMany (mappedBy = "clientEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TaxiOrderEntity> taxiOrders;
 
 
 

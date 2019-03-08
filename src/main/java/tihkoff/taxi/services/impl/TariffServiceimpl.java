@@ -16,6 +16,7 @@ import java.util.List;
 public class TariffServiceimpl implements TariffService {
     private final TariffRepository tariffRepository;
     private final TariffEntityMapper tariffEntityMapper;
+
     @Override
     public List<TariffEntityDTO> getAll() {
         return tariffEntityMapper.conveter(tariffRepository.findAll());
@@ -52,7 +53,10 @@ public class TariffServiceimpl implements TariffService {
 
     @Override
     public TariffEntityDTO addTariff(TariffEntityDTO tariffEntityDTO) {
-        return tariffEntityMapper.tariffEntityMap(tariffRepository.save(tariffEntityMapper.tariffEntityDTOmap(tariffEntityDTO)));
+        return tariffEntityMapper
+                .tariffEntityMap(tariffRepository
+                        .save(tariffEntityMapper
+                                .tariffEntityDTOmap(tariffEntityDTO)));
 
     }
 
@@ -60,7 +64,10 @@ public class TariffServiceimpl implements TariffService {
     public TariffEntityDTO editTariff(TariffEntityDTO tariffEntityDTO, Integer tariffID) {
 
         TariffEntity tariffEntity = tariffEntityMapper.tariffEntityDTOmap(getById(tariffID));
-        return tariffEntityMapper.tariffEntityMap(tariffRepository.save(tariffEntityMapper.updateTariff(tariffEntityDTO, tariffEntity)));
+        return tariffEntityMapper
+                .tariffEntityMap(tariffRepository
+                        .save(tariffEntityMapper
+                                .updateTariff(tariffEntityDTO, tariffEntity)));
 
     }
 }

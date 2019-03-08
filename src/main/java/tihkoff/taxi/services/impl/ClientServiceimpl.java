@@ -8,7 +8,6 @@ import tihkoff.taxi.mapper.ClientEntityMapper;
 import tihkoff.taxi.repository.ClientRepository;
 import tihkoff.taxi.services.ClientService;
 
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -20,7 +19,10 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public ClientEntityDTO addClient(ClientEntityDTO clientEntityDTO) {
-        return clientEntityMapper.clientEntityMap(clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO)));
+        return clientEntityMapper
+                .clientEntityMap(clientRepository
+                        .save(clientEntityMapper
+                                .clientEntityDTOmap(clientEntityDTO)));
     }
 
     @Override
@@ -41,24 +43,26 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public ClientEntityDTO editClient(ClientEntityDTO clientEntityDTO, String phone) {
-      ClientEntity clientEntity = clientEntityMapper.clientEntityDTOmap(getByPhone(phone));
-      clientEntityDTO.setPhoneNumber(phone);
-      return clientEntityMapper.
-              clientEntityMap(clientRepository.
-                      save(clientEntityMapper.
-                              updateClient(clientEntityDTO,clientEntity)));
+        ClientEntity clientEntity = clientEntityMapper.clientEntityDTOmap(getByPhone(phone));
+        clientEntityDTO.setPhoneNumber(phone);
+        return clientEntityMapper.
+                clientEntityMap(clientRepository.
+                        save(clientEntityMapper.
+                                updateClient(clientEntityDTO, clientEntity)));
     }
 
     @Override
     public ClientEntityDTO getByPhone(String phone) {
-        return clientRepository.findByPhoneNumber(phone).map(clientEntityMapper::clientEntityMap).orElseThrow(EntityNotFoundException::new);
+        return clientRepository
+                .findByPhoneNumber(phone)
+                .map(clientEntityMapper::clientEntityMap)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
-    public boolean changeStatus(ClientEntityDTO clientEntityDTO) {              // непонятно нужен ли метод
+    public boolean changeStatus(ClientEntityDTO clientEntityDTO) {
         return false;
     }
-
 
 
 }

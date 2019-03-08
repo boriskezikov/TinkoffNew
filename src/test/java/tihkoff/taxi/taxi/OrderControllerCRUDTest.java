@@ -23,7 +23,6 @@ import tihkoff.taxi.dto.TaxiOrderDTO;
 import tihkoff.taxi.mapper.*;
 import tihkoff.taxi.repository.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -88,32 +87,27 @@ public class OrderControllerCRUDTest {
 
         carEntity.setManufacturerId(12L);
         carEntity.setCategory(1);
-        carEntity.setModelInfo("kgkg");
+        carEntity.setModelInfo(RandomStringUtils.randomAlphabetic(8));
         carEntity.setTechCondition(5);
+        carEntity = carRepository.save(carEntity);
 
         clientEntity.setStatus(true);
-        clientEntity.setPhoneNumber("79308192357");
+        clientEntity.setPhoneNumber(RandomStringUtils.randomNumeric(10));
         clientEntity.setName(RandomStringUtils.randomNumeric(8));
+        clientEntity = clientRepository.save(clientEntity);
 
         tariffEntity.setTariffInfo(RandomStringUtils.randomNumeric(8));
         tariffEntity.setPrice(124);
+        tariffEntity = tariffRepository.save(tariffEntity);
 
         taxiDriverEntity.setStatus(1);
         taxiDriverEntity.setPassport(RandomStringUtils.randomNumeric(8));
         taxiDriverEntity.setLicenseNumber(RandomStringUtils.randomNumeric(8));
-        taxiDriverEntity.setName("kori");
-
-
-        rateEntity.setReview("kfkfkf");
-
-
-
-        clientEntity = clientRepository.save(clientEntity);
-        tariffEntity = tariffRepository.save(tariffEntity);
-        carEntity = carRepository.save(carEntity);
+        taxiDriverEntity.setName(RandomStringUtils.randomAlphabetic(8));
         taxiDriverEntity.setCarEntity(carEntity);
-        System.out.println();
         taxiDriverEntity = taxiDriverEntityRepository.save(taxiDriverEntity);
+
+        rateEntity.setReview(" ");
 
         taxiOrderEntity.setStatus(0);
         taxiOrderEntity.setClientEntity(clientEntity);
@@ -122,21 +116,21 @@ public class OrderControllerCRUDTest {
         taxiOrderEntity.setTariffEntity(tariffEntity);
         taxiOrderEntity.setDestination("kkf");
         taxiOrderEntity.setTaxiDriverEntity(taxiDriverEntity);
-
         taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
 
     }
 
-//    @After
-//    public void tearDown() {
-//        taxiOrderRepository.deleteAll();
-//        taxiDriverEntityRepository.deleteAll();
-//        rateRepository.deleteAll();
-//        tariffRepository.deleteAll();
-//        carRepository.deleteAll();
-//        clientRepository.deleteAll();
-//
-//    }
+    @After
+    public void tearDown() {
+
+        taxiOrderRepository.deleteAll();
+        taxiDriverEntityRepository.deleteAll();
+        clientRepository.deleteAll();
+        tariffRepository.deleteAll();
+        rateRepository.deleteAll();
+        carRepository.deleteAll();
+
+    }
 
 
     @Test
@@ -144,13 +138,14 @@ public class OrderControllerCRUDTest {
         String uri = "/orders/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andReturn();
         List<TaxiOrderDTO> expected = taxiOrderMapper.conveter(taxiOrderRepository.findAll());
         List<TaxiOrderDTO> factsheet = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<List<TaxiOrderDTO>>() {
         });
+
         Assertions.assertThat(expected.size()).isEqualTo(factsheet.size());
-        Assertions.assertThat(expected).usingFieldByFieldElementComparator().containsAll(factsheet);
+
 
     }
 
@@ -165,7 +160,35 @@ public class OrderControllerCRUDTest {
         String json = mvcResult.getResponse().getContentAsString();
         TaxiOrderDTO expected = taxiOrderMapper.taxiOrderEntityMap(taxiOrderEntity);
         TaxiOrderDTO factsheet = mapper.readValue(json, TaxiOrderDTO.class);
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
+
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id", "clientEntity", "tariffEntity", "taxiDriverEntity", "rateEntity");
+        Assertions.assertThat(expected.getTaxiDriverEntity()).isEqualToIgnoringGivenFields(factsheet.getTaxiDriverEntity(), "id", "carEntity");
+        Assertions.assertThat(expected.getClientEntity()).isEqualToIgnoringGivenFields(factsheet.getClientEntity(), "id");
+        Assertions.assertThat(expected.getTariffEntity()).isEqualToIgnoringGivenFields(factsheet.getTariffEntity(), "id");
 
     }
+
+    @Test
+    public void addOrderTest() throws Exception {
+        String json = mapper.writeValueAsString(taxiOrderEntity);
+        String uri = "/orders/";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = mvcResult.getResponse().getContentAsString();
+        TaxiOrderDTO expected = taxiOrderMapper.taxiOrderEntityMap(taxiOrderEntity);
+        TaxiOrderDTO factsheet = mapper.readValue(json, TaxiOrderDTO.class);
+
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id", "clientEntity", "tariffEntity", "taxiDriverEntity", "rateEntity");
+        Assertions.assertThat(expected.getTaxiDriverEntity()).isEqualToIgnoringGivenFields(factsheet.getTaxiDriverEntity(), "id", "carEntity");
+        Assertions.assertThat(expected.getClientEntity()).isEqualToIgnoringGivenFields(factsheet.getClientEntity(), "id");
+        Assertions.assertThat(expected.getRateEntity()).isEqualToIgnoringGivenFields(factsheet.getRateEntity(), "id");
+        Assertions.assertThat(expected.getTariffEntity()).isEqualToIgnoringGivenFields(factsheet.getTariffEntity(), "id");
+
+    }
+
+
 }
