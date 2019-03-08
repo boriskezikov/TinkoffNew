@@ -1,4 +1,5 @@
 package tihkoff.taxi.taxi;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
@@ -20,7 +21,9 @@ import tihkoff.taxi.domain.RateEntity;
 import tihkoff.taxi.dto.RateEntityDTO;
 import tihkoff.taxi.mapper.RateEntityMapper;
 import tihkoff.taxi.repository.RateRepository;
+
 import java.util.List;
+
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -143,7 +146,6 @@ public class RateControllerCRUDTest {
     }
 
     @Test
-    //@Transactional
     public void deleteRateTest() throws Exception {
         Long id = rateEntity.getId();
         mvc.perform(MockMvcRequestBuilders.delete("/rates/" + id)

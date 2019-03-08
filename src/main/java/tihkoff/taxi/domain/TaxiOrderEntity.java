@@ -5,11 +5,19 @@ import lombok.Setter;
 import javax.persistence.*;
 
 
+
+@NamedEntityGraph(
+        name = "order-entity-graph",
+        attributeNodes = {
+                @NamedAttributeNode(value = "tariffEntity"),
+                @NamedAttributeNode(value ="clientEntity"),
+                @NamedAttributeNode(value ="rateEntity"),
+        }
+)
 @Entity
 @Getter
 @Setter
 @Table(name  = "taxi_order" , schema = "public", catalog = "tinkofftaxi")
-
 public class TaxiOrderEntity {
 
     @Id
@@ -30,7 +38,6 @@ public class TaxiOrderEntity {
 
     @Column(name = "status")
     private int status;
-
 
     @OneToOne
     @JoinColumn(name = "tariff_id", referencedColumnName = "tariff_id")

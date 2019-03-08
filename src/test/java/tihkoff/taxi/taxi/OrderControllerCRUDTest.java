@@ -23,7 +23,6 @@ import tihkoff.taxi.dto.TaxiOrderDTO;
 import tihkoff.taxi.mapper.*;
 import tihkoff.taxi.repository.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -117,21 +116,12 @@ public class OrderControllerCRUDTest {
         taxiOrderEntity.setTariffEntity(tariffEntity);
         taxiOrderEntity.setDestination("kkf");
         taxiOrderEntity.setTaxiDriverEntity(taxiDriverEntity);
-
         taxiOrderEntity = taxiOrderRepository.save(taxiOrderEntity);
 
-
-
-
-
-
-
-
-
     }
-    
+
     @After
-    public void tearDown(){
+    public void tearDown() {
 
         taxiOrderRepository.deleteAll();
         taxiDriverEntityRepository.deleteAll();
@@ -143,22 +133,23 @@ public class OrderControllerCRUDTest {
     }
 
 
-  //  @Test
+    @Test
     public void getOrders() throws Exception {
         String uri = "/orders/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andReturn();
         List<TaxiOrderDTO> expected = taxiOrderMapper.conveter(taxiOrderRepository.findAll());
         List<TaxiOrderDTO> factsheet = mapper.readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<List<TaxiOrderDTO>>() {
         });
+
         Assertions.assertThat(expected.size()).isEqualTo(factsheet.size());
-        Assertions.assertThat(expected).usingFieldByFieldElementComparator().containsAll(factsheet);
+
 
     }
 
-   // @Test
+    @Test
     public void getOrderByIdTest() throws Exception {
         String uri = "/orders/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + taxiOrderEntity.getId())
@@ -169,7 +160,35 @@ public class OrderControllerCRUDTest {
         String json = mvcResult.getResponse().getContentAsString();
         TaxiOrderDTO expected = taxiOrderMapper.taxiOrderEntityMap(taxiOrderEntity);
         TaxiOrderDTO factsheet = mapper.readValue(json, TaxiOrderDTO.class);
-        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id");
+
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id", "clientEntity", "tariffEntity", "taxiDriverEntity", "rateEntity");
+        Assertions.assertThat(expected.getTaxiDriverEntity()).isEqualToIgnoringGivenFields(factsheet.getTaxiDriverEntity(), "id", "carEntity");
+        Assertions.assertThat(expected.getClientEntity()).isEqualToIgnoringGivenFields(factsheet.getClientEntity(), "id");
+        Assertions.assertThat(expected.getTariffEntity()).isEqualToIgnoringGivenFields(factsheet.getTariffEntity(), "id");
 
     }
+
+    @Test
+    public void addOrderTest() throws Exception {
+        String json = mapper.writeValueAsString(taxiOrderEntity);
+        String uri = "/orders/";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = mvcResult.getResponse().getContentAsString();
+        TaxiOrderDTO expected = taxiOrderMapper.taxiOrderEntityMap(taxiOrderEntity);
+        TaxiOrderDTO factsheet = mapper.readValue(json, TaxiOrderDTO.class);
+
+        Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "id", "clientEntity", "tariffEntity", "taxiDriverEntity", "rateEntity");
+        Assertions.assertThat(expected.getTaxiDriverEntity()).isEqualToIgnoringGivenFields(factsheet.getTaxiDriverEntity(), "id", "carEntity");
+        Assertions.assertThat(expected.getClientEntity()).isEqualToIgnoringGivenFields(factsheet.getClientEntity(), "id");
+        Assertions.assertThat(expected.getRateEntity()).isEqualToIgnoringGivenFields(factsheet.getRateEntity(), "id");
+        Assertions.assertThat(expected.getTariffEntity()).isEqualToIgnoringGivenFields(factsheet.getTariffEntity(), "id");
+
+    }
+
+
 }

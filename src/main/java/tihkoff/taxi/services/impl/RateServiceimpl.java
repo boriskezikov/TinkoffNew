@@ -18,7 +18,10 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public RateEntityDTO addRate(RateEntityDTO rateEntityDTO) {
-       return rateEntityMapper.rateEntityMAp(rateRepository.save(rateEntityMapper.rateEntityDTOmap(rateEntityDTO)));
+       return rateEntityMapper
+               .rateEntityMAp(rateRepository
+                       .save(rateEntityMapper
+                               .rateEntityDTOmap(rateEntityDTO)));
 
     }
 
@@ -29,7 +32,10 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public RateEntityDTO getRateById(Long rateID) {
-        return rateRepository.findById(rateID).map(rateEntityMapper::rateEntityMAp).orElseThrow(EntityNotFoundException::new);
+        return rateRepository
+                .findById(rateID)
+                .map(rateEntityMapper::rateEntityMAp)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override

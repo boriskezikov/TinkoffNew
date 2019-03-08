@@ -69,6 +69,7 @@ public class CarControllerCRUDTest {
 
     @After
     public void tearDown() {
+
         carRepository.deleteAll();
     }
 
@@ -80,11 +81,11 @@ public class CarControllerCRUDTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
-        List<CarEntityDTO> expected = carEntityMapper.conveter(carRepository.findAll());
+
         String json = mvcResult.getResponse().getContentAsString();
-        String type = mvcResult.getResponse().getContentType();
-        List<CarEntityDTO> factsheet = mapper.readValue(json, new TypeReference<List<CarEntityDTO>>() {
-        });
+        List<CarEntityDTO> expected = carEntityMapper.conveter(carRepository.findAll());
+        List<CarEntityDTO> factsheet = mapper.readValue(json, new TypeReference<List<CarEntityDTO>>() {});
+
         Assertions.assertThat(expected.size()).isEqualTo(factsheet.size());
         Assertions.assertThat(expected).usingFieldByFieldElementComparator().containsAll(factsheet);
     }
@@ -97,10 +98,11 @@ public class CarControllerCRUDTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
+
         String json = mvcResult.getResponse().getContentAsString();
         CarEntityDTO expected = carEntityMapper.carEntityMap(carEntity);
         CarEntityDTO factsheet = mapper.readValue(json, CarEntityDTO.class);
-        System.out.println("Второй тест json" + json);
+
         Assertions.assertThat(expected).isEqualToComparingFieldByField(factsheet);
 
     }
@@ -152,7 +154,9 @@ public class CarControllerCRUDTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
+
         List<CarEntity> list = carRepository.findAll();
+
         Assertions.assertThat(list.isEmpty()).isEqualTo(true);
 
     }

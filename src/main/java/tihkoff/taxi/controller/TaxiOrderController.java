@@ -32,8 +32,6 @@ public class TaxiOrderController {
         taxiOrderService.deleteOrderByID(orderID);
     }
 
-
-
     @PutMapping("{id}")
     public TaxiOrderDTO editById(@PathVariable("id") @RequestBody @Valid TaxiOrderDTO taxiOrderDTO, Long id) {
         return taxiOrderService.editOrder(taxiOrderDTO, id);

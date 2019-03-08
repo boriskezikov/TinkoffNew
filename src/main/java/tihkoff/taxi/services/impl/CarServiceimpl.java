@@ -63,7 +63,9 @@ public class CarServiceimpl implements CarService {
 
     @Override
     public   List<CarEntityDTO> getCarEntitiesByCategory(Integer category){
-        return carEntityMapper.conveter(carRepository.getCarEntitiesByCategory(category));
+        return carEntityMapper
+                .conveter(carRepository
+                        .getCarEntitiesByCategory(category));
 
     }
 

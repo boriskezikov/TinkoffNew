@@ -20,7 +20,10 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public ClientEntityDTO addClient(ClientEntityDTO clientEntityDTO) {
-        return clientEntityMapper.clientEntityMap(clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO)));
+        return clientEntityMapper
+                .clientEntityMap(clientRepository
+                        .save(clientEntityMapper
+                                .clientEntityDTOmap(clientEntityDTO)));
     }
 
     @Override
@@ -51,11 +54,14 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public ClientEntityDTO getByPhone(String phone) {
-        return clientRepository.findByPhoneNumber(phone).map(clientEntityMapper::clientEntityMap).orElseThrow(EntityNotFoundException::new);
+        return clientRepository
+                .findByPhoneNumber(phone)
+                .map(clientEntityMapper::clientEntityMap)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
-    public boolean changeStatus(ClientEntityDTO clientEntityDTO) {              // непонятно нужен ли метод
+    public boolean changeStatus(ClientEntityDTO clientEntityDTO) {
         return false;
     }
 

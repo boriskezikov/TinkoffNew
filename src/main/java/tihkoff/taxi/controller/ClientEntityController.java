@@ -47,7 +47,6 @@ public class ClientEntityController {
 
     }
 
-    @Transactional
     @DeleteMapping("{phone}")
     public void deleteClient(@PathVariable("phone") String phone)
     {

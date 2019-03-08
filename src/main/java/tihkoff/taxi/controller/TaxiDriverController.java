@@ -40,10 +40,12 @@ public class TaxiDriverController {
         taxiDriverService.deleteById(driverID);
     }
 
+
     @DeleteMapping("/driversLic/{lic}")
     public void deleteByLicence (@PathVariable("lic")String licence){
         taxiDriverService.deleteByLicense(licence);
     }
+
 
     @DeleteMapping("/driversPass/{pass}")
     public void deleteByPassport(@PathVariable("pass") String passport){
@@ -56,7 +58,7 @@ public class TaxiDriverController {
     }
 
     @PutMapping("/{id}")
-    public TaxiDriverEntityDTO editByID(@PathVariable("id") @RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO, Long id){
+    public TaxiDriverEntityDTO editByID(@PathVariable Long id,@RequestBody @Valid TaxiDriverEntityDTO taxiDriverEntityDTO){
         return taxiDriverService.editDriver(taxiDriverEntityDTO,id);
     }
 

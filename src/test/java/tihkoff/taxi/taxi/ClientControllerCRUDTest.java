@@ -21,7 +21,10 @@ import tihkoff.taxi.domain.ClientEntity;
 import tihkoff.taxi.dto.ClientEntityDTO;
 import tihkoff.taxi.mapper.ClientEntityMapper;
 import tihkoff.taxi.repository.ClientRepository;
+
+import javax.transaction.Transactional;
 import java.util.List;
+
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -62,12 +65,13 @@ public class ClientControllerCRUDTest {
         clientEntityDTO2.setStatus(false);
 
         clientEntity = clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
-        clientEntity2 =  clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO2));
+        clientEntity2 = clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO2));
 
     }
 
     @After
     public void tearDown() {
+
         clientRepository.deleteAll();
     }
 
@@ -96,6 +100,7 @@ public class ClientControllerCRUDTest {
 
         ClientEntityDTO expected = clientEntityMapper.clientEntityMap(clientEntity);
         ClientEntityDTO factsheet = mapper.readValue(mvcResult.getResponse().getContentAsString(), ClientEntityDTO.class);
+
         Assertions.assertThat(expected).isEqualToIgnoringGivenFields(factsheet, "taxiOrders");
     }
 
@@ -120,22 +125,23 @@ public class ClientControllerCRUDTest {
     }
 
     @Test
+    @Transactional
     public void deleteClientTest() throws Exception {
         clientRepository.deleteAll();
-        clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
+        clientRepository.saveAndFlush(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
         mvc.perform(MockMvcRequestBuilders.delete("/clients/" + clientRepository.findAll().get(0).getPhoneNumber())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
         List<ClientEntity> list = clientRepository.findAll();
+
         Assertions.assertThat(list.isEmpty()).isEqualTo(true);
     }
 
     @Test
-    public void editClientTest() throws Exception{
+    public void editClientTest() throws Exception {
         String json = mapper.writeValueAsString(clientEntityDTO);
-
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/clients/" + clientEntity.getPhoneNumber())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
@@ -151,5 +157,5 @@ public class ClientControllerCRUDTest {
     }
 
 
-    }
+}
 

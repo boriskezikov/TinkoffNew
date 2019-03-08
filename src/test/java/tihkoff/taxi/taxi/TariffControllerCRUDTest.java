@@ -22,7 +22,6 @@ import tihkoff.taxi.dto.TariffEntityDTO;
 import tihkoff.taxi.mapper.TariffEntityMapper;
 import tihkoff.taxi.repository.TariffRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -82,7 +81,6 @@ public class TariffControllerCRUDTest {
 
         List<TariffEntityDTO> expected = tariffEntityMapper.conveter(tariffRepository.findAll());
         String json = mvcResult.getResponse().getContentAsString();
-        String type = mvcResult.getResponse().getContentType();
 
         List<TariffEntityDTO> factsheet = mapper.readValue(json, new TypeReference<List<TariffEntityDTO>>() {
         });
@@ -153,11 +151,12 @@ public class TariffControllerCRUDTest {
     public void deleteTariffTest() throws Exception {
         Integer tariffId = tariffEntity.getId();
         mvc.perform(MockMvcRequestBuilders.delete("/tariffs/" + tariffId)
-                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
-            Assertions.assertThat(tariffRepository.existsById(tariffId)).isFalse();
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
-        }
+        Assertions.assertThat(tariffRepository.existsById(tariffId)).isFalse();
+
+    }
 }
 
 
