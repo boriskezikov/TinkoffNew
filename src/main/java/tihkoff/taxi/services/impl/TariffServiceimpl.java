@@ -16,6 +16,7 @@ import java.util.List;
 public class TariffServiceimpl implements TariffService {
     private final TariffRepository tariffRepository;
     private final TariffEntityMapper tariffEntityMapper;
+
     @Override
     public List<TariffEntityDTO> getAll() {
         return tariffEntityMapper.conveter(tariffRepository.findAll());

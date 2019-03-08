@@ -15,9 +15,6 @@ import javax.validation.Valid;
 
 import java.util.List;
 
-
-
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cars")

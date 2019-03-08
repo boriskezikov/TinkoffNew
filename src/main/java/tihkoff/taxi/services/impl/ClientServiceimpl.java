@@ -8,7 +8,6 @@ import tihkoff.taxi.mapper.ClientEntityMapper;
 import tihkoff.taxi.repository.ClientRepository;
 import tihkoff.taxi.services.ClientService;
 
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -44,12 +43,12 @@ public class ClientServiceimpl implements ClientService {
 
     @Override
     public ClientEntityDTO editClient(ClientEntityDTO clientEntityDTO, String phone) {
-      ClientEntity clientEntity = clientEntityMapper.clientEntityDTOmap(getByPhone(phone));
-      clientEntityDTO.setPhoneNumber(phone);
-      return clientEntityMapper.
-              clientEntityMap(clientRepository.
-                      save(clientEntityMapper.
-                              updateClient(clientEntityDTO,clientEntity)));
+        ClientEntity clientEntity = clientEntityMapper.clientEntityDTOmap(getByPhone(phone));
+        clientEntityDTO.setPhoneNumber(phone);
+        return clientEntityMapper.
+                clientEntityMap(clientRepository.
+                        save(clientEntityMapper.
+                                updateClient(clientEntityDTO, clientEntity)));
     }
 
     @Override
@@ -64,7 +63,6 @@ public class ClientServiceimpl implements ClientService {
     public boolean changeStatus(ClientEntityDTO clientEntityDTO) {
         return false;
     }
-
 
 
 }

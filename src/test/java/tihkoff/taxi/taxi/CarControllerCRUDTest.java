@@ -84,7 +84,8 @@ public class CarControllerCRUDTest {
 
         String json = mvcResult.getResponse().getContentAsString();
         List<CarEntityDTO> expected = carEntityMapper.conveter(carRepository.findAll());
-        List<CarEntityDTO> factsheet = mapper.readValue(json, new TypeReference<List<CarEntityDTO>>() {});
+        List<CarEntityDTO> factsheet = mapper.readValue(json, new TypeReference<List<CarEntityDTO>>() {
+        });
 
         Assertions.assertThat(expected.size()).isEqualTo(factsheet.size());
         Assertions.assertThat(expected).usingFieldByFieldElementComparator().containsAll(factsheet);

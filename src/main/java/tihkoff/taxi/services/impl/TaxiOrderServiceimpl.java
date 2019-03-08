@@ -56,7 +56,6 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
     }
 
 
-
     @Override
     public List<TaxiOrderDTO> getByOrderStatus(Integer orderStatus) {
         return taxiOrderMapper
@@ -65,7 +64,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
 
     @Override
     public TaxiOrderDTO createOrder(TaxiOrderDTO taxiOrderDTO) {
-       return taxiOrderMapper.taxiOrderEntityMap( taxiOrderRepository
+        return taxiOrderMapper.taxiOrderEntityMap(taxiOrderRepository
                 .save(taxiOrderMapper.taxiOrderEntityDTOmap(taxiOrderDTO)));
 
     }
@@ -77,7 +76,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
         return taxiOrderMapper
                 .taxiOrderEntityMap(taxiOrderRepository
                         .save(taxiOrderMapper
-                                .updateOrder(taxiOrderDTO,taxiOrderEntity)));
+                                .updateOrder(taxiOrderDTO, taxiOrderEntity)));
     }
 
     @Override
@@ -85,7 +84,7 @@ public class TaxiOrderServiceimpl implements TaxiOrderService {
         TaxiOrderEntity taxiOrderEntity = taxiOrderMapper.taxiOrderEntityDTOmap(getByOrderID(orderID));
         return taxiOrderMapper
                 .taxiOrderEntityMap(taxiOrderRepository
-                        .save(taxiOrderMapper.updateOrder(taxiOrderDTO,taxiOrderEntity)));
+                        .save(taxiOrderMapper.updateOrder(taxiOrderDTO, taxiOrderEntity)));
     }
 
 

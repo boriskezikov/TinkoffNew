@@ -8,7 +8,6 @@ import tihkoff.taxi.mapper.CarEntityMapper;
 import tihkoff.taxi.repository.CarRepository;
 import tihkoff.taxi.services.CarService;
 
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -20,8 +19,7 @@ public class CarServiceimpl implements CarService {
     private final CarEntityMapper carEntityMapper;
 
     @Override
-    public CarEntityDTO getByCarId ( Long id)
-    {
+    public CarEntityDTO getByCarId(Long id) {
         return carRepository.findById(id).map(carEntityMapper::carEntityMap).orElseThrow(EntityNotFoundException::new);
 
     }
@@ -48,28 +46,24 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public CarEntityDTO editCar(CarEntityDTO carEntityDTO, Long carId)
-        {
+    public CarEntityDTO editCar(CarEntityDTO carEntityDTO, Long carId) {
 
-            CarEntity carEntity = carEntityMapper.carEntityDTOmap(getByCarId(carId));
-            carEntityDTO.setId(carId);
-            return carEntityMapper.
-                    carEntityMap(carRepository.
-                            save(carEntityMapper.
-                                    updateCar(carEntityDTO,carEntity)));
-        }
-
+        CarEntity carEntity = carEntityMapper.carEntityDTOmap(getByCarId(carId));
+        carEntityDTO.setId(carId);
+        return carEntityMapper.
+                carEntityMap(carRepository.
+                        save(carEntityMapper.
+                                updateCar(carEntityDTO, carEntity)));
+    }
 
 
     @Override
-    public   List<CarEntityDTO> getCarEntitiesByCategory(Integer category){
+    public List<CarEntityDTO> getCarEntitiesByCategory(Integer category) {
         return carEntityMapper
                 .conveter(carRepository
                         .getCarEntitiesByCategory(category));
 
     }
-
-
 
 
 }

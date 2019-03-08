@@ -18,10 +18,10 @@ public class RateServiceimpl implements RateService {
 
     @Override
     public RateEntityDTO addRate(RateEntityDTO rateEntityDTO) {
-       return rateEntityMapper
-               .rateEntityMAp(rateRepository
-                       .save(rateEntityMapper
-                               .rateEntityDTOmap(rateEntityDTO)));
+        return rateEntityMapper
+                .rateEntityMAp(rateRepository
+                        .save(rateEntityMapper
+                                .rateEntityDTOmap(rateEntityDTO)));
 
     }
 

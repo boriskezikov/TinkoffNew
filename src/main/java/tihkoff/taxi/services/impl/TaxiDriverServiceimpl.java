@@ -2,7 +2,6 @@ package tihkoff.taxi.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import tihkoff.taxi.domain.TaxiDriverEntity;
 import tihkoff.taxi.dto.TaxiDriverEntityDTO;
 import tihkoff.taxi.mapper.TaxiDriverEntityMapper;
@@ -56,7 +55,6 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
     }
 
 
-
     @Override
     public void deleteAll() {
         taxiDriverEntityRepository.deleteAll();
@@ -88,6 +86,6 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
         return taxiDriverEntityMapper
                 .taxiDriverMap(taxiDriverEntityRepository
                         .save(taxiDriverEntityMapper
-                                .updateTaxiDriver(taxiDriverEntityDTO,taxiDriverEntity)));
+                                .updateTaxiDriver(taxiDriverEntityDTO, taxiDriverEntity)));
     }
 }
