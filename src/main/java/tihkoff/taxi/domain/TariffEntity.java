@@ -19,7 +19,7 @@ public class TariffEntity {
 
     private Integer price;
 
-    @Column (name = "tariff_info", length = 150)
+    @Column (name = "tariff_info")
     private String tariffInfo;
 
 

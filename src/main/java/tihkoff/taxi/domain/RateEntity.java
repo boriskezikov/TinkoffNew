@@ -18,7 +18,7 @@ public class RateEntity {
     @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
+
     private String review;
 
     @OneToOne
