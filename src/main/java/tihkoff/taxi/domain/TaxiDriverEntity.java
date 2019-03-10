@@ -23,16 +23,13 @@ public class TaxiDriverEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
     private Integer status;
 
-    @Column(name = "license_number", length = 12)
+    @Column(name = "license_number")
     private String licenseNumber;
 
-    @Column(length = 50)
     private String name;
 
-    @Column(length = 12)
     private String passport;
 
     @OneToOne
