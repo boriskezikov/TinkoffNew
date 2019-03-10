@@ -15,18 +15,17 @@ public class CarEntity {
     @Id
     @Column(name = "car_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(name = "model_info", nullable = false, length = 100)
+    @Column(name = "model_info")
     private String modelInfo;
 
-    @Column(name = "tech_condition", nullable = false)
-    private int techCondition;
+    @Column(name = "tech_condition")
+    private Integer techCondition;
 
     @Column(name = "manufacturer_id")
     private Long manufacturerId;
 
-    @Column(nullable = false)
     private Integer category;
 
 
