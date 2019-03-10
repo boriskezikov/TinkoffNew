@@ -19,10 +19,8 @@ public class ClientEntity {
     @Column(name="phone_number", nullable = false)
     private String phoneNumber;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column (name= "status", nullable = false)
     private Boolean status;
 
 
