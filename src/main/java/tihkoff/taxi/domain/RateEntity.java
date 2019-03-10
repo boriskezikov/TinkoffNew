@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter
 @Setter
-@Table(name = "rate", schema = "public", catalog="tinkofftaxi")
+@Table(name = "rate")
 public class RateEntity {
 
     @Id

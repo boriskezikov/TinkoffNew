@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name  = "taxi_order" , schema = "public", catalog = "tinkofftaxi")
+@Table(name  = "taxi_order")
 public class TaxiOrderEntity {
 
     @Id
@@ -33,11 +33,9 @@ public class TaxiOrderEntity {
     private String clientLocation;
 
     @Column(name = "distination")
-
     private String destination;
 
-    @Column(name = "status")
-    private int status;
+    private Integer status;
 
     @OneToOne
     @JoinColumn(name = "tariff_id", referencedColumnName = "tariff_id")

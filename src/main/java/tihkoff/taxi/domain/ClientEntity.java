@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "client", schema = "public", catalog = "tinkofftaxi")
+@Table(name = "client")
 public class ClientEntity {
     @Id
     @Column(name="phone_number", nullable = false)
