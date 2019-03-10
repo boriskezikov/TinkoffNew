@@ -17,7 +17,7 @@ public class TaxiDriverEntityDTO {
 
     @Length(max = 12)
     private String licenseNumber;
-    
+
     @NotNull
     @Length(max=12)
     private String passport;
