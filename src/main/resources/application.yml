@@ -1,7 +1,7 @@
 #Liquibase
 spring.liquibase.enabled: true
 spring.liquibase.change-log: classpath:db/liquibase-changelog.xml
-spring.datasource.url: jdbc:postgresql://postgres:5432/tinkofftaxi
+spring.datasource.url: jdbc:postgresql://localhost:5432/tinkofftaxi
 spring.datasource.username: boris1
 spring.datasource.password: 1111
 

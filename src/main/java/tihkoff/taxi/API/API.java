@@ -2,18 +2,19 @@ package tihkoff.taxi.API;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
 
-import tihkoff.taxi.controller.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import tihkoff.taxi.controller.TaxiOrderController;
 import tihkoff.taxi.dto.ClientEntityDTO;
-import tihkoff.taxi.dto.TariffEntityDTO;
-import tihkoff.taxi.dto.TaxiDriverEntityDTO;
 import tihkoff.taxi.dto.TaxiOrderDTO;
 import tihkoff.taxi.mapper.ClientEntityMapper;
 import tihkoff.taxi.repository.ClientRepository;
-import java.util.List;
-
-
+import tihkoff.taxi.services.TaxiOrderService;
 
 
 @RequiredArgsConstructor
@@ -21,42 +22,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class API {
 
-    private final TaxiOrderController taxiOrderController;
-    private final TaxiDriverController taxiDriverController;
-    private final  TariffEntityController tariffEntityController;
+    private final TaxiOrderService taxiOrderService;
     private final ClientRepository clientRepository;
     private final ClientEntityMapper clientEntityMapper;
+    private final OrderComputing orderComputing;
 
-
-    public TaxiOrderDTO searchDriver(TaxiOrderDTO taxiOrderDTO) {
-        List<TaxiDriverEntityDTO> drivers = taxiDriverController.getAll();
-        for (int i = 0; i < drivers.size(); ++i) {
-            if (drivers.get(i).getStatus() == 0) {
-                taxiOrderDTO.setTaxiDriverEntity(drivers.get(i));
-                break;
-            }
-        }
-        return taxiOrderDTO;
-
-    }
-
-    public  TaxiOrderDTO setUpTariff(TaxiOrderDTO taxiOrderDTO) {
-        List<TariffEntityDTO> tariff = tariffEntityController.getAll();
-        // if (taxiOrderDTO.getDestination() - taxiOrderDTO.getClientLocation() > 10)
-        for (int i = 0; i < tariff.size(); ++i) {
-            taxiOrderDTO.setTariffEntity(tariff.get(i));
-            break;
-        }
-        return taxiOrderDTO;
-    }
-
-    public TaxiOrderDTO changeOrderStatus(TaxiOrderDTO taxiOrderDTO, Integer status) {
-        if (status == 0 || status == 1 || status == 2) {
-            taxiOrderDTO.setStatus(status);
-            return taxiOrderDTO;
-        }
-        return null;
-    }
 
     @PostMapping
     public TaxiOrderDTO startSetOrder(@RequestBody PrimaryData primaryData) {
@@ -69,24 +39,21 @@ public class API {
         clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
 
         taxiOrderDTO.setClientEntity(clientEntityDTO);
-        taxiOrderDTO = searchDriver(taxiOrderDTO);
-        taxiOrderDTO = setUpTariff(taxiOrderDTO);
+
+            taxiOrderDTO.setTaxiDriverEntity(orderComputing.searchDriver());
+
+        taxiOrderDTO.setTariffEntity(orderComputing.searchTariff());
         taxiOrderDTO.setClientLocation(primaryData.location);
         taxiOrderDTO.setDestination(primaryData.destination);
+        taxiOrderDTO.setStatus(1);
 
-        if(taxiOrderDTO.getTaxiDriverEntity() != null){
-            taxiOrderDTO = changeOrderStatus(taxiOrderDTO,1);
 
-        }
-
-        taxiOrderController.addOrder(taxiOrderDTO);
+        taxiOrderService.createOrder(taxiOrderDTO);
         return taxiOrderDTO;
     }
 
 
-
-
-        }
+}
 
 
 
