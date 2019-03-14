@@ -13,4 +13,5 @@ public interface CarService {
     List<CarEntityDTO>  getCarEntitiesByCategory (Integer category);
     CarEntityDTO getByCarId(Long id);
 
+
 }

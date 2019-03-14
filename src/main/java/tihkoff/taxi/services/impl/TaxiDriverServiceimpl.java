@@ -33,9 +33,13 @@ public class TaxiDriverServiceimpl implements TaxiDriverService {
 
     @Override
     public TaxiDriverEntityDTO addDriver(TaxiDriverEntityDTO taxiDriverEntityDTO) {
-        return taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntityRepository
+         TaxiDriverEntity taxiDriverEntity = taxiDriverEntityRepository
                 .save(taxiDriverEntityMapper
-                        .taxiDriverDTOmap(taxiDriverEntityDTO)));
+                        .taxiDriverDTOmap(taxiDriverEntityDTO));
+         return taxiDriverEntityMapper.taxiDriverMap(taxiDriverEntityRepository
+                 .findById(taxiDriverEntity.getId())
+                 .orElseThrow(NullPointerException::new));
+
 
     }
 

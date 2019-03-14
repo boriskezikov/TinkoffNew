@@ -1,20 +1,29 @@
-version: '2'
+version: '3'
+
 services:
-  web:
-    restart: always
-    build: .
-    image: 38cc5be52191
-    ports:
-      - 8080:8080
-    depends_on:
-      - db
   db:
     image: postgres
-    restart: always
+    container_name: database
     environment:
-      - POSTGRES_PASSWORD=1111
-      - POSTGRES_USER=boris1
-      - POSTGRES_DB=tinkofftaxi
-      - PGDATA=/var/lib/postgresql/data/pgdata
-    #ports:
-      #- 5432:5432
+      POSTGRES_USER: boris1
+      POSTGRES_PASSWORD: 1111
+      POSTGRES_DB: tinkofftaxi
+    volumes:
+      - data-volume:/var/lib/postgresql/data
+    networks:
+      - networks_one
+  application:
+    build: .
+    container_name: application
+    volumes:
+      - data-volume:/var/lib/application/
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tinkofftaxi
+    ports:
+      - 8081:8080
+    networks:
+      - networks_one
+networks:
+  networks_one:
+volumes:
+  data-volume:

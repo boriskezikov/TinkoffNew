@@ -12,6 +12,5 @@ public class PrimaryData {
     String phoneNumber;
     String location;
     String destination;
-    String name;
     Boolean status;
 }

@@ -1,5 +1,5 @@
-FROM  openjdk:10-jre-slim
-ADD target/taxi-spring-boot-app.jar taxi-spring-boot-app.jar
+FROM openjdk:8
+ADD /target/taxi-spring-boot-app.jar app.jar
 MAINTAINER BorisKezikov
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "taxi-spring-boot-app.jar"]
+ENV JAVA_OPTS="-Duser.timezone=GMT -Dfile.encoding=UTF-8 -Denvironment.type=production"
+CMD exec java $JAVA_OPTS -jar /app.jar

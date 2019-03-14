@@ -29,6 +29,6 @@ public class CarEntityDTO {
     @Length (max = 100)
     private String modelInfo;
 
-    private List<TaxiDriverEntityDTO> taxiDrivers = new ArrayList<>();
+
 
 }

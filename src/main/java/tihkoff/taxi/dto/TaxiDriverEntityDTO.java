@@ -31,6 +31,6 @@ public class TaxiDriverEntityDTO {
 
     private CarEntityDTO carEntity;
 
-    private List<TaxiOrderDTO> taxiOrders = new ArrayList<>();
+    private List<Long> taxiOrders;
 
 }
