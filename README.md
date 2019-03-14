@@ -36,6 +36,6 @@ The application may be started via terminal. If you wonder to touch the applicat
 After start, please visit [this page](http://localhost:8080/swagger-ui.html). The convinient front-end html page provides you an opportunity to interact the application. 
 # Contacts
 We are happy to answer any questons!
-Please, do not hesitate to cintact us
+Please, do not hesitate to contact us
 * +79308196302 Kezikov Boris
 * [Click to go vk.com](https://vk.com/boriskezikov)
