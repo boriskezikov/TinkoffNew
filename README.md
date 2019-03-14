@@ -1,4 +1,4 @@
-# TINKOFF TAXI
+# TAXI SERVICE
 
 Thank you for visiting this Repository!  We are welcome for any additions and notes!
 # Brief Description
