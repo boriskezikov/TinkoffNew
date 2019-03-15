@@ -21,6 +21,6 @@ public class ClientEntityDTO {
     @NotNull
     private Boolean status;
 
-    private List<TaxiOrderDTO> taxiOrders = new ArrayList<>();
+    private List<Long> taxiOrders ;
 
 }

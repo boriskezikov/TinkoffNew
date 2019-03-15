@@ -23,7 +23,7 @@ public class TariffEntityDTO {
     @NotNull
     private String tariffInfo;
 
-    private List<TaxiOrderDTO> taxiOrders = new ArrayList<>();
+    private List<Long> taxiOrders;
 
 
 }
