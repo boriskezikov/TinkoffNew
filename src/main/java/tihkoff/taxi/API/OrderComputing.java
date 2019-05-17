@@ -23,7 +23,7 @@ public class OrderComputing {
     private final TaxiDriverEntityRepository taxiDriverEntityRepository;
     private  final TaxiDriverEntityMapper taxiDriverEntityMapper;
 
-    public TaxiDriverEntityDTO searchDriver() {
+    TaxiDriverEntityDTO searchDriver() {
         try{
         TaxiDriverEntityDTO taxiDriverEntityDTO = taxiDriverService.getAll()
                 .stream()
@@ -44,7 +44,7 @@ public class OrderComputing {
     }
 
 
-    public  TariffEntityDTO searchTariff() {
+      TariffEntityDTO searchTariff() {
         return tariffService.getAll()
                 .stream()
                 .findAny()

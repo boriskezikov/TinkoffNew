@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PrimaryData {
+class PrimaryData {
     String phoneNumber;
     String location;
     String destination;
