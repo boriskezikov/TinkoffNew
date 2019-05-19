@@ -1,46 +1,47 @@
-<h1>Tinkoff taxi</h1>
-<form [formGroup]="userData" (submit)="onSubmit()">
 
-  <div class="phone">
-    <label for="phone">phone number</label>
-    <input type="text" id="phone" formControlName="phone"/>
-    <div class="error" *ngIf="isControlInvalid('phone')">
-      Phone number can consist of numbers and "+" only.
+<form class="decor"  [formGroup]="userData" (submit)="onSubmit()">
+  <div class="form-left-decoration"></div>
+  <div class="form-right-decoration"></div>
+  <div class="circle"></div>
+  <div class="form-inner">
+
+    <h3>Заказать машину</h3>
+
+    <div class="phoneNumber">
+      <input type="tel" placeholder="Phone number"  formControlName="phone">
+      <div class="error" *ngIf="isControlInvalid('phone')">
+        Phone number can consist of numbers and "+" only.
+      </div>
     </div>
-  </div>
 
-  <div class="currentLocation">
-    <label for="currentLocation">From</label>
-    <input type="text" id="currentLocation" formControlName="currentLocation"/>
-    <div class="error" *ngIf="isControlInvalid('currentLocation')">
-      Enter valid address
+    <div class="email">
+      <input type="email" placeholder="Email" formControlName="email">
+      <div class="error" *ngIf="isControlInvalid('email')">
+        Enter valid email address
+      </div>
     </div>
-  </div>
 
-  <div class="destination">
-    <label for="destination">To</label>
-    <input type="text" id="destination" formControlName="destination"/>
-    <div class="error" *ngIf="isControlInvalid('destination')">
-      Enter destination valid address
+
+    <div class="currentLocation">
+      <input  placeholder="Current location" formControlName="currentLocation">
+      <div class="error" *ngIf="isControlInvalid('currentLocation')">
+        Enter valid address
+      </div>
     </div>
-  </div>
 
-  <div class="taxiType">
-    <label for="taxiType">Cab type</label>
-    <input type="text" id="taxiType" formControlName="taxiType"/>
-  </div>
-
-  <div class="email">
-    <label for="email">Email</label>
-    <input type="text" id="email" formControlName="email"/>
-    <div class="error" *ngIf="isControlInvalid('email')">
-      Enter valid email address
+    <div class="destination">
+      <input  placeholder="Destination" formControlName="destination">
+      <div class="error" *ngIf="isControlInvalid('destination')">
+        Enter destination valid address
+      </div>
     </div>
-  </div>
 
-  <button type="submit">Order taxi cub</button>
+    <div class="taxiType">
+      <input  placeholder="Taxi type" formControlName="taxiType">
+    </div>
+
+    <textarea placeholder="Комментарий..." rows="3"></textarea>
+
+    <button type="submit" value="Order taxi">Order taxi cub</button>
+  </div>
 </form>
-
-<div>
-  {{userData.value | json}}
-</div>

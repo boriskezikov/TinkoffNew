@@ -1,1 +1,5 @@
+* {
+  box-sizing: border-box;
+}
+body {background: #f69a73;}
 /* You can add global styles to this file, and also import other style files */

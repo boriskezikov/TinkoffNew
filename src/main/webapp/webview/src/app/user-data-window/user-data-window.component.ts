@@ -10,7 +10,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class UserDataWindowComponent implements OnInit {
 
   userData: FormGroup;
-  phoneRegex = '';
+  phoneRegex = '^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$';
 
   constructor(private fb: FormBuilder) { }
 
@@ -40,7 +40,7 @@ export class UserDataWindowComponent implements OnInit {
   private initForm() {
     this.userData = this.fb.group({
       phone: ['', [
-        Validators.required
+        Validators.required, Validators.pattern(this.phoneRegex)
       ]
       ],
       currentLocation: ['', [
