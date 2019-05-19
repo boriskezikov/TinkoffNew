@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataModelComponent } from './data-model.component';
+import { UserDataWindowComponent } from './user-data-window.component';
 
-describe('DataModelComponent', () => {
-  let component: DataModelComponent;
-  let fixture: ComponentFixture<DataModelComponent>;
+describe('UserDataWindowComponent', () => {
+  let component: UserDataWindowComponent;
+  let fixture: ComponentFixture<UserDataWindowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataModelComponent ]
+      declarations: [ UserDataWindowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataModelComponent);
+    fixture = TestBed.createComponent(UserDataWindowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

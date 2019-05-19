@@ -1,0 +1,25 @@
+<h1>первая реактивная форма</h1>
+<form [formgroup]="myfirstreactiveform" (submit)="onsubmit()">
+  <div class="phone">
+  <label for="phone">phone number</label>
+  <input type="text" id="phone" formcontrolname="name" />
+  <div class="error" *ngif="iscontrolinvalid('name')">
+    phone number can consist of numbers and "+" only.
+  </div>
+  </div>
+  <label for="email">from</label>
+  <input type="text" id="email" formcontrolname="email" />
+
+  <div class="error" *ngif="iscontrolinvalid('email')">
+    enter valid address
+  </div>
+
+
+  <button type="submit">отправить</button>
+</form>
+
+<hr/><br/>
+
+<div>
+  {{myfirstreactiveform.value | json}}
+</div>
