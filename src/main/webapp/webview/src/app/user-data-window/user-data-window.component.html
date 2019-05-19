@@ -1,25 +1,46 @@
-<h1>первая реактивная форма</h1>
-<form [formgroup]="myfirstreactiveform" (submit)="onsubmit()">
+<h1>Tinkoff taxi</h1>
+<form [formGroup]="userData" (submit)="onSubmit()">
+
   <div class="phone">
-  <label for="phone">phone number</label>
-  <input type="text" id="phone" formcontrolname="name" />
-  <div class="error" *ngif="iscontrolinvalid('name')">
-    phone number can consist of numbers and "+" only.
-  </div>
-  </div>
-  <label for="email">from</label>
-  <input type="text" id="email" formcontrolname="email" />
-
-  <div class="error" *ngif="iscontrolinvalid('email')">
-    enter valid address
+    <label for="phone">phone number</label>
+    <input type="text" id="phone" formControlName="phone"/>
+    <div class="error" *ngIf="isControlInvalid('phone')">
+      Phone number can consist of numbers and "+" only.
+    </div>
   </div>
 
+  <div class="currentLocation">
+    <label for="currentLocation">From</label>
+    <input type="text" id="currentLocation" formControlName="currentLocation"/>
+    <div class="error" *ngIf="isControlInvalid('currentLocation')">
+      Enter valid address
+    </div>
+  </div>
 
-  <button type="submit">отправить</button>
+  <div class="destination">
+    <label for="destination">To</label>
+    <input type="text" id="destination" formControlName="destination"/>
+    <div class="error" *ngIf="isControlInvalid('destination')">
+      Enter destination valid address
+    </div>
+  </div>
+
+  <div class="taxiType">
+    <label for="taxiType">Cab type</label>
+    <input type="text" id="taxiType" formControlName="taxiType"/>
+  </div>
+
+  <div class="email">
+    <label for="email">Email</label>
+    <input type="text" id="email" formControlName="email"/>
+    <div class="error" *ngIf="isControlInvalid('email')">
+      Enter valid email address
+    </div>
+  </div>
+
+  <button type="submit">Order taxi cub</button>
 </form>
 
-<hr/><br/>
-
 <div>
-  {{myfirstreactiveform.value | json}}
+  {{userData.value | json}}
 </div>
