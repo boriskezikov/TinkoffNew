@@ -7,19 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './user-data-window.component.html',
   styleUrls: ['./user-data-window.component.css']
 })
-export class UserDataWindowComponent implements OnInit{
-
-  //
-  // OrderData = new FormGroup({
-  //     phone: new FormControl('',
-  //       Validators.pattern(/^[A-z0-9]*$/),),
-  //     currentLocation: new FormControl('',
-  //       Validators.pattern(/^[A-z0-9]*$/)),
-  //     destination: new FormControl(''),
-  //     type: new FormControl('',
-  //       Validators.pattern(/^[A-z0-9]*$/))
-  //   }
-  // );
+export class UserDataWindowComponent implements OnInit {
 
   userData: FormGroup;
   phoneRegex = '';
@@ -40,23 +28,19 @@ export class UserDataWindowComponent implements OnInit{
       return;
     }
 
-    /** TODO: Обработка данных формы */
     console.log(this.userData.value);
   }
 
   isControlInvalid(controlName: string): boolean {
     const control = this.userData.controls[controlName];
 
-    const result = control.invalid && control.touched;
-
-    return result;
+    return control.invalid && control.touched;
   }
 
   private initForm() {
     this.userData = this.fb.group({
       phone: ['', [
-        Validators.required,
-        Validators.pattern(this.phoneRegex)
+        Validators.required
       ]
       ],
       currentLocation: ['', [
@@ -64,7 +48,7 @@ export class UserDataWindowComponent implements OnInit{
       ]
       ],
       destination: ['', [
-        Validators.required, Validators.email
+        Validators.required
       ]
       ],
       taxiType: ['', [
