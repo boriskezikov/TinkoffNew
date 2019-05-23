@@ -18,40 +18,37 @@ import java.util.List;
 @Component
 public class OrderComputing {
 
-    private  final TaxiDriverService taxiDriverService;
-    private  final TariffService tariffService;
+    private final TaxiDriverService taxiDriverService;
+    private final TariffService tariffService;
     private final TaxiDriverEntityRepository taxiDriverEntityRepository;
-    private  final TaxiDriverEntityMapper taxiDriverEntityMapper;
+    private final TaxiDriverEntityMapper taxiDriverEntityMapper;
 
     TaxiDriverEntityDTO searchDriver() {
-        try{
-        TaxiDriverEntityDTO taxiDriverEntityDTO = taxiDriverService.getAll()
-                .stream()
-                .filter(x -> x.getStatus() == 0)
-                .findFirst()
-                .orElseThrow(NullPointerException::new);
-        taxiDriverEntityDTO.setStatus(1);
+        try {
+            TaxiDriverEntityDTO taxiDriverEntityDTO = taxiDriverService.getAll()
+                    .stream()
+                    .filter(x -> x.getStatus() == 0)
+                    .findFirst()
+                    .orElseThrow(NullPointerException::new);
+            taxiDriverEntityDTO.setStatus(1);
 
-        taxiDriverService.editDriver(taxiDriverEntityDTO,taxiDriverEntityDTO.getId());
+            taxiDriverService.editDriver(taxiDriverEntityDTO, taxiDriverEntityDTO.getId());
 
-        return taxiDriverEntityDTO;
-        }
-
-        catch (NullPointerException ex){
+            return taxiDriverEntityDTO;
+        } catch (NullPointerException ex) {
             System.out.println("NO DRIVERS");
             return null;
         }
     }
 
 
-      TariffEntityDTO searchTariff() {
+    TariffEntityDTO searchTariff() {
         return tariffService.getAll()
                 .stream()
                 .findAny()
                 .orElseThrow(NullPointerException::new);
 
     }
-
 
 
 }

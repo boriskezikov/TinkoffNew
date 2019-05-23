@@ -13,4 +13,6 @@ class PrimaryData {
     String location;
     String destination;
     Boolean status;
+    String comment;
+    Enum type;
 }

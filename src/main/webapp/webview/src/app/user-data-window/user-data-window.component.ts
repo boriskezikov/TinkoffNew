@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AppService} from "../service/service";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -12,7 +14,9 @@ export class UserDataWindowComponent implements OnInit {
   userData: FormGroup;
   phoneRegex = '^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$';
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private appService: AppService,
+              private httpClient: HttpClient) {
+  }
 
   ngOnInit() {
     this.initForm();
@@ -24,11 +28,9 @@ export class UserDataWindowComponent implements OnInit {
     if (this.userData.invalid) {
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
-
       return;
     }
 
-    console.log(this.userData.value);
   }
 
   isControlInvalid(controlName: string): boolean {
@@ -60,6 +62,13 @@ export class UserDataWindowComponent implements OnInit {
       ]
       ]
     });
+  }
+
+  private onAction(){
+
+    this.appService.postOrder(this.userData.value);
+    console.log(this.userData.value);
+
   }
 }
 

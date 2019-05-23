@@ -1,5 +1,4 @@
-
-<form class="decor"  [formGroup]="userData" (submit)="onSubmit()">
+<form class="decor" [formGroup]="userData" (submit)="onSubmit()">
   <div class="form-left-decoration"></div>
   <div class="form-right-decoration"></div>
   <div class="circle"></div>
@@ -8,7 +7,7 @@
     <h3>Заказать машину</h3>
 
     <div class="phoneNumber">
-      <input type="tel" placeholder="Phone number"  formControlName="phone">
+      <input type="tel" placeholder="Phone number" formControlName="phone">
       <div class="error" *ngIf="isControlInvalid('phone')">
         Phone number can consist of numbers and "+" only.
       </div>
@@ -23,25 +22,25 @@
 
 
     <div class="currentLocation">
-      <input  placeholder="Current location" formControlName="currentLocation">
+      <input placeholder="Current location" formControlName="currentLocation">
       <div class="error" *ngIf="isControlInvalid('currentLocation')">
         Enter valid address
       </div>
     </div>
 
     <div class="destination">
-      <input  placeholder="Destination" formControlName="destination">
+      <input placeholder="Destination" formControlName="destination">
       <div class="error" *ngIf="isControlInvalid('destination')">
         Enter destination valid address
       </div>
     </div>
 
     <div class="taxiType">
-      <input  placeholder="Taxi type" formControlName="taxiType">
+      <input placeholder="Taxi type" formControlName="taxiType">
     </div>
 
     <textarea placeholder="Комментарий..." rows="3"></textarea>
 
-    <button type="submit" value="Order taxi">Order taxi cub</button>
+    <button type="submit" value="Order taxi" [formAction]="onAction()">Order taxi cub</button>
   </div>
 </form>

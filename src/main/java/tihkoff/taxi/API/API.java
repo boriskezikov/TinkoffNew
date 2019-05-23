@@ -28,12 +28,11 @@ public class API {
     private final OrderComputing orderComputing;
     private final ClientService clientService;
     private final TaxiDriverService taxiDriverService;
-    public final Adder adder;
 
     @PostMapping
     public TaxiOrderDTO startSetOrder(@RequestBody PrimaryData primaryData) {
         TaxiOrderDTO taxiOrderDTO = new TaxiOrderDTO();
-        ClientEntityDTO clientEntityDTO = new ClientEntityDTO();
+        ClientEntityDTO clientEntityDTO;
         RateEntityDTO rateEntityDTO = new RateEntityDTO();
 
 

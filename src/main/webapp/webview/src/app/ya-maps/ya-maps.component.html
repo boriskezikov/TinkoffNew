@@ -1,0 +1,18 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <lib-yamapng>
+  </lib-yamapng>
+  <div class="map">
+    <ya-map>
+      <ya-marker    *ngFor="let m of markers; let i = index"
+                    [latitude]="m.lat"
+                    [longitude]="m.lng"
+                    [draggable]="m.draggable"
+                    [preset]="m.preset"
+                    [iconContent]="m.iconContent"
+                    [showInfo]="m.showInfo">
+      </ya-marker>
+    </ya-map>
+  </div>
+</div>
+
