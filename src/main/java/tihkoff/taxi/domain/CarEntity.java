@@ -26,7 +26,7 @@ public class CarEntity {
     @Column(name = "manufacturer_id")
     private Long manufacturerId;
 
-    private Integer category;
+    private String category;
 
 
 

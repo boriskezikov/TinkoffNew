@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
-    List<CarEntity> getCarEntitiesByCategory(int category);
+    List<CarEntity> getCarEntitiesByCategory(String category);
 }

@@ -1,6 +1,5 @@
 package tihkoff.taxi.services;
 
-import tihkoff.taxi.domain.RateEntity;
 import tihkoff.taxi.dto.RateEntityDTO;
 
 import java.util.List;

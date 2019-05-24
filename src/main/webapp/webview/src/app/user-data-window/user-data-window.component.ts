@@ -30,6 +30,7 @@ export class UserDataWindowComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
+    this.appService.postOrder(this.userData.value);
 
   }
 
@@ -64,11 +65,8 @@ export class UserDataWindowComponent implements OnInit {
     });
   }
 
-  private onAction(){
-
-    this.appService.postOrder(this.userData.value);
-    console.log(this.userData.value);
-
+  onAction(){
+    return this.appService.postOrder(this.userData.value);
   }
 }
 

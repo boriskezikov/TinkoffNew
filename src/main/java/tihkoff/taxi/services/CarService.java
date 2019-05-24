@@ -10,7 +10,7 @@ public interface CarService {
     void deleteById(Long id);
     void deleteAll();
     CarEntityDTO editCar(CarEntityDTO carEntityDTO, Long carId);
-    List<CarEntityDTO>  getCarEntitiesByCategory (Integer category);
+    List<CarEntityDTO>  getCarEntitiesByCategory (String category);
     CarEntityDTO getByCarId(Long id);
 
 

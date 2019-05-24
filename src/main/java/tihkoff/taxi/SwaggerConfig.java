@@ -18,13 +18,13 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("tinkoff.taxi"))
+                        .basePackage("tihkoff.taxi.controller"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo());
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("YangoTaxi")
+        return new ApiInfoBuilder().title("Yango")
                 .description("Employee Management REST API")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")

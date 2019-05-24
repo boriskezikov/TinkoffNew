@@ -10,9 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 class PrimaryData {
     String phoneNumber;
+    String name;
     String location;
     String destination;
     Boolean status;
     String comment;
-    Enum type;
+    String type;
 }
