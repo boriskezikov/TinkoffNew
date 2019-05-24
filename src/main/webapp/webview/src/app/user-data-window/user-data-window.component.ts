@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppService} from "../service/service";
-import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -15,7 +14,7 @@ export class UserDataWindowComponent implements OnInit {
   phoneRegex = '^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$';
 
   constructor(private fb: FormBuilder, private appService: AppService,
-              private httpClient: HttpClient) {
+             ) {
   }
 
   ngOnInit() {
@@ -23,14 +22,14 @@ export class UserDataWindowComponent implements OnInit {
   }
 
   onSubmit() {
-    const controls = this.userData.controls;
+     const controls = this.userData.controls;
 
-    if (this.userData.invalid) {
-      Object.keys(controls)
-        .forEach(controlName => controls[controlName].markAsTouched());
-      return;
-    }
-
+     if (this.userData.invalid) {
+       Object.keys(controls)
+         .forEach(controlName => controls[controlName].markAsTouched());
+       return;
+     }
+    this.appService.postOrder(this.userData.value);
   }
 
   isControlInvalid(controlName: string): boolean {
@@ -41,11 +40,13 @@ export class UserDataWindowComponent implements OnInit {
 
   private initForm() {
     this.userData = this.fb.group({
-      phone: ['', [
+      phoneNumber: ['', [
         Validators.required, Validators.pattern(this.phoneRegex)
       ]
       ],
-      currentLocation: ['', [
+
+      // need to get location from yamap
+      location: ['', [
         Validators.required
       ]
       ],
@@ -53,23 +54,19 @@ export class UserDataWindowComponent implements OnInit {
         Validators.required
       ]
       ],
-      taxiType: ['', [
-        Validators.required
-      ]
-      ],
-      email: ['', [
-        Validators.required, Validators.email
-      ]
-      ]
+      // taxiType: ['', [
+      //   Validators.required
+      // ]
+      // ],
+      // email: ['', [
+      //   Validators.required, Validators.email
+      // ]
+      // ]
+      status: ['true'],
+      name: [''],
     });
   }
 
-  private onAction(){
-
-    this.appService.postOrder(this.userData.value);
-    console.log(this.userData.value);
-
-  }
 }
 
 

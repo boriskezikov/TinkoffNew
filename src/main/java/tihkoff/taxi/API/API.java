@@ -13,13 +13,13 @@ import tihkoff.taxi.services.ClientService;
 import tihkoff.taxi.services.TaxiDriverService;
 import tihkoff.taxi.services.TaxiOrderService;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 public class API {
 
     private final TaxiOrderService taxiOrderService;
@@ -30,31 +30,30 @@ public class API {
     private final TaxiDriverService taxiDriverService;
 
     @PostMapping
-    public TaxiOrderDTO startSetOrder(@RequestBody PrimaryData primaryData) {
-        TaxiOrderDTO taxiOrderDTO = new TaxiOrderDTO();
-        ClientEntityDTO clientEntityDTO;
-        RateEntityDTO rateEntityDTO = new RateEntityDTO();
+    public TaxiOrderDTO startSetOrder(@RequestBody @Valid PrimaryData primaryData) {
 
 
-        clientEntityDTO = clientService.getByPhone(primaryData.getPhoneNumber());
-        clientEntityDTO.setPhoneNumber(primaryData.getPhoneNumber());
-        clientEntityDTO.setStatus(primaryData.getStatus());
-        clientEntityDTO.setName("stranger");
-        clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
+        List<ClientEntityDTO> clients = clientService.getAll();
+        ClientEntityDTO clientEntityDTO = clientEntityMapper.ApiDtoToClientDto(primaryData);
 
+        if (!clients.contains(clientEntityDTO)) {
+            clientRepository.save(clientEntityMapper.clientEntityDTOmap(clientEntityDTO));
 
-        taxiOrderDTO.setClientEntity(clientEntityDTO);
+        }
         TaxiDriverEntityDTO taxiDriverEntityDTO = orderComputing.searchDriver();
-        taxiOrderDTO.setTaxiDriverEntity(taxiDriverEntityDTO);
-        taxiOrderDTO.setTariffEntity(orderComputing.searchTariff());
-        taxiOrderDTO.setClientLocation(primaryData.location);
-        taxiOrderDTO.setDestination(primaryData.destination);
-        taxiOrderDTO.setStatus(1);
-        taxiOrderDTO.setRateEntity(rateEntityDTO);
+
+        TaxiOrderDTO taxiOrderDTO = new TaxiOrderDTO(
+                taxiDriverEntityDTO,
+                clientEntityDTO,
+                primaryData.location,
+                primaryData.destination,
+                1,
+                orderComputing.searchTariff(),
+                new RateEntityDTO()
+        );
+
 
         taxiDriverService.editDriver(taxiDriverEntityDTO, taxiDriverEntityDTO.getId());
-
-
         return taxiOrderService.createOrder(taxiOrderDTO);
 
     }

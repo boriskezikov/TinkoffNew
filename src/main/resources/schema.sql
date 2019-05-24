@@ -27,7 +27,7 @@ CREATE TABLE CAR(
   manufacturer_id bigint not null,
   model_info varchar(100) not null ,
   tech_condition int check ( tech_condition >0 and tech_condition<10) not null ,
-  category int check (category = 0 or category = 1) not null
+  category int not null
 );
 
 CREATE TABLE CLIENT(

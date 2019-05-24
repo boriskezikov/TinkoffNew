@@ -1,46 +1,49 @@
-<form class="decor" [formGroup]="userData" (submit)="onSubmit()">
+<form class="decor" [formGroup]="userData">
   <div class="form-left-decoration"></div>
   <div class="form-right-decoration"></div>
   <div class="circle"></div>
   <div class="form-inner">
-
     <h3>Заказать машину</h3>
-
     <div class="phoneNumber">
-      <input type="tel" placeholder="Phone number" formControlName="phone">
-      <div class="error" *ngIf="isControlInvalid('phone')">
-        Phone number can consist of numbers and "+" only.
-      </div>
+      <input type="tel" placeholder="Phone number" formControlName="phoneNumber">
+      <!--<div class="error" *ngIf="isControlInvalid('phone')">-->
+        <!--Phone number can consist of numbers and "+" only.-->
+      <!--</div>-->
     </div>
 
-    <div class="email">
-      <input type="email" placeholder="Email" formControlName="email">
-      <div class="error" *ngIf="isControlInvalid('email')">
-        Enter valid email address
-      </div>
-    </div>
+    <!--<div class="email">-->
+      <!--<input type="email" placeholder="Email" formControlName="email">-->
+      <!--<div class="error" *ngIf="isControlInvalid('email')">-->
+        <!--Enter valid email address-->
+      <!--</div>-->
+    <!--</div>-->
 
+
+    <div class = "name">
+      <input placeholder="Name" formControlName="name">
+    </div>
 
     <div class="currentLocation">
-      <input placeholder="Current location" formControlName="currentLocation">
-      <div class="error" *ngIf="isControlInvalid('currentLocation')">
-        Enter valid address
-      </div>
+      <input placeholder="Current location" formControlName="location">
+      <!--<div class="error" *ngIf="isControlInvalid('currentLocation')">-->
+        <!--Enter valid address-->
+      <!--</div>-->
     </div>
 
     <div class="destination">
       <input placeholder="Destination" formControlName="destination">
-      <div class="error" *ngIf="isControlInvalid('destination')">
-        Enter destination valid address
-      </div>
+      <!--<div class="error" *ngIf="isControlInvalid('destination')">-->
+        <!--Enter destination valid address-->
+      <!--</div>-->
     </div>
 
-    <div class="taxiType">
-      <input placeholder="Taxi type" formControlName="taxiType">
-    </div>
+    <!--<select formControlName="taxiType" class="taxiType" >-->
+      <!--<option >Orange taxi</option>-->
+      <!--<option>Black taxi</option>-->
+    <!--</select>-->
 
-    <textarea placeholder="Комментарий..." rows="3"></textarea>
+    <!--<textarea placeholder="Комментарий..." rows="3"></textarea>-->
 
-    <button type="submit" value="Order taxi" [formAction]="onAction()">Order taxi cub</button>
+    <button type="submit" value="Order taxi" (click)= onSubmit() >Order taxi cab</button>
   </div>
 </form>

@@ -8,11 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-class PrimaryData {
+public class PrimaryData {
     String phoneNumber;
     String location;
     String destination;
     Boolean status;
-    String comment;
-    Enum type;
+    String name;
 }

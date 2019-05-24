@@ -62,15 +62,15 @@
   right: 10px;
 }
 
-.circle {
-  position: absolute;
-  bottom: 80px;
-  left: -55px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: white;
-}
+/*.circle {*/
+  /*position: absolute;*/
+  /*bottom: 80px;*/
+  /*left: -55px;*/
+  /*width: 20px;*/
+  /*height: 20px;*/
+  /*border-radius: 50%;*/
+  /*background: white;*/
+/*}*/
 
 .form-inner {
   padding: 50px;
@@ -92,10 +92,12 @@
 button {
   margin-top: 30px;
   background: #f69a73;
-
   border-bottom: 4px solid #d87d56;
   color: white;
   font-size: 14px;
+  border-radius: 20px;
+  position: relative;
+  left: 30%;
 }
 
 .form-inner textarea {
@@ -107,9 +109,28 @@ button {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 24px;
-  color: #707981;
 }
 
-.error {
+.taxiType{
+  display: block;
+  /*background: transparent;*/
+  height: 34px;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+option{
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #707981;
+
 
 }

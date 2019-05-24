@@ -11,6 +11,7 @@ import { YamapngModule } from 'projects/yamapng/src/public_api';
 import { YaCoreModule } from 'projects/yamapng/src/lib/core.module';
 import {AppService} from "./service/service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {OrderDTO} from "./service/orderDTO";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     }),
     HttpClientModule
   ],
-  providers: [AppService, HttpClient],
+  providers: [AppService, HttpClient, OrderDTO],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

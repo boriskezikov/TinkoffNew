@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import tihkoff.taxi.domain.ClientEntity;
 
 import javax.persistence.NamedEntityGraph;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,5 +14,6 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<ClientEntity, String> {
     Optional<ClientEntity> findByPhoneNumber(String phone);
     void deleteByPhoneNumber(String phone);
+
 
 }
